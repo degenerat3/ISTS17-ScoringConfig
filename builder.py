@@ -22,11 +22,15 @@ def build_team(team):
             
 
 def build_all():
+    """ Build all the config"""
     with open("competition.yml", "w") as ofil:
+        # Load the base config and write it to the outfile
         with open("base.yml") as inf:
             ofil.write(inf.read())
-        for team in range(1, 14):
+        # Iterate all the teams and add them to the outfile
+        for team in range(0, 14):
             ofil.write(build_team(team))
+        
     print("Config written to competition.yml")
 
 if __name__ == "__main__":
