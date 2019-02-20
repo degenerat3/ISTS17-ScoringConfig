@@ -1,0 +1,54 @@
+  - name: HTTP - Leonidas
+    check_name: HTTPCheck
+    host: 10.2.$TEAM.4
+    port: 80
+    points: 100
+    environments:
+    # TODO: Whats the string we are looking for here?
+    - matching_content: Just link your credit card, specify the amount, and our country will be better because of
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.2.$TEAM.4
+      - name: uri
+        value: "/"
+    - matching_content: Just link your credit card, specify the amount, and our country will be better because of
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.2.$TEAM.4
+      - name: uri
+        value: "/"
+  - name: Elasticsearch - Leonidas
+    check_name: ElasticsearchCheck
+    host: 10.2.$TEAM.4
+    port: 9200
+    points: 100
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: index
+        value: messages
+      - name: doc_type
+        value: ists_rocks
+  - name: SSH - Leonidas
+    check_name: SSHCheck
+    host: 10.2.$TEAM.4
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps

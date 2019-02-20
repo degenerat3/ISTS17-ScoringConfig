@@ -1,0 +1,5562 @@
+---
+teams:
+- name: WhiteTeam
+  color: White
+  users:
+  - username: whiteteamuser
+    password: testpass
+- name: RedTeam
+  color: Red
+  users:
+  - username: redteamuser
+    password: testpass- name: Team1
+  color: Blue
+  users:
+  - username: team1user1
+    password: testpass1
+  services:
+  - name: AD - Alexander
+    check_name: LDAPCheck
+    host: 10.2.1.1
+    port: 389
+    points: 50
+    accounts:
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^result: 0 Success"
+      properties:
+      - name: domain
+        value: team1.ists.io
+      - name: base_dn
+        value: dc=team1,dc=ists,dc=io
+  - name: DNS - Alexander
+    check_name: DNSCheck
+    host: 10.2.1.1
+    port: 53
+    points: 100
+    environments:
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: attila.team1.ists.io
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: leonidas.team1.ists.io
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: bismark.team1.ists.io
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: NS
+      - name: domain
+        value: team1.ists.io
+# TODO ADD THE WinRM Check  - name: SMB - Julius
+    check_name: SMBCheck
+    host: 10.2.1.2
+    port: 445
+    points: 100
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: remote_name
+        value: Julius
+      - name: share
+        value: meme_share
+      - name: file
+        value: flag.txt
+      # SHA256 hash of file
+      - name: hash
+        value: 3ac8347c1130bd1ffe9078f99be6cb690baedd9e5552de0f7140c0daded7e1fa
+  - name: FTP - Julius
+    check_name: FTPCheck
+    host: 10.2.1.2
+    port: 21
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: remotefilepath
+        value: "/ftp_files/testfile.txt"
+      - name: filecontents
+        value: Sample file contents
+# TODO ADD THE WinRM Check  - name: Docker API - Churchhill
+    check_name: DockerAPICheck
+    host: 10.2.1.3
+    port: 2375
+    points: 100
+    environments:
+    - matching_content: SUCCESS
+      properties:
+      - name: docker_image
+        value: 'hello-world:latest'
+  - name: SSH - Churchhill
+    check_name: SSHCheck
+    host: 10.2.1.3
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+  - name: HTTP - Leonidas
+    check_name: HTTPCheck
+    host: 10.2.1.4
+    port: 80
+    points: 100
+    environments:
+    # TODO: Whats the string we are looking for here?
+    - matching_content: Just link your credit card, specify the amount, and our country will be better because of
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.2.1.4
+      - name: uri
+        value: "/"
+    - matching_content: Just link your credit card, specify the amount, and our country will be better because of
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.2.1.4
+      - name: uri
+        value: "/"
+  - name: Elasticsearch - Leonidas
+    check_name: ElasticsearchCheck
+    host: 10.2.1.4
+    port: 9200
+    points: 100
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: index
+        value: messages
+      - name: doc_type
+        value: ists_rocks
+  - name: SSH - Leonidas
+    check_name: SSHCheck
+    host: 10.2.1.4
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+  - name: HTTP - Attila
+    check_name: HTTPCheck
+    host: 10.2.1.5
+    port: 80
+    points: 100
+    environments:
+    - matching_content: Just link your credit card, specify the amount, and our country will be better because of
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.2.1.5
+      - name: uri
+        value: "/"
+    - matching_content: Just link your credit card, specify the amount, and our country will be better because of
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.2.1.5
+      - name: uri
+        value: "/"
+  - name: SSH - Attila
+    check_name: SSHCheck
+    host: 10.2.1.5
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+  - name: SMTP - Xerxes
+    check_name: SMTPCheck
+    host: 10.2.1.6
+    port: 25
+    points: 100
+    accounts:
+    - username: edgar@mail.team1.ists.io
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: Successfully sent email
+      properties:
+      - name: touser
+        value: edgar@mail.team1.ists.io
+      - name: subject
+        value: "Edgar Poe! Open up. This is the secret police"
+      - name: body
+        value: "What the jellyfish did you just jellyfishing say about me, you little brick? I'll have you know I graduated top of my class in the Hackistani Seals, and I've been involved in numerous secret raids on Al-Quaeda, and I have over 300 confirmed kills. I am trained in gorilla warfare and I'm the top sniper in the entire Hackistani armed forces. You are nothing to me but just another target. I will wipe you the jellyfish out with precision the likes of which has never been seen before on this Earth, mark my jellyfishing words. You think you can get away with saying that shit to me over the Internet? Think again, jellyfisher. As we speak I am contacting my secret network of spies across the USA and your IP is being traced right now so you better prepare for the storm, maggot. The storm that wipes out the pathetic little thing you call your life. You're jellyfishing dead, kid. I can be anywhere, anytime, and I can kill you in over seven hundred ways, and that's just with my bare hands. Not only am I extensively trained in unarmed combat, but I have access to the entire arsenal of the United States Marine Corps and I will use it to its full extent to wipe your miserable ass off the face of the continent, you little shit. If only you could have known what unholy retribution your little \"clever\" comment was about to bring down upon you, maybe you would have held your jellyfishing tongue. But you couldn't, you didn't, and now you're paying the price, you goddangit idiot. I will shit fury all over you and you will drown in it. You're jellyfishing dead, kiddo."
+# TODO ADD THE WinRM Check
+  - name: OpenVPN - Ashoka
+    check_name: OpenVPNCheck
+    host: 10.2.1.7
+    port: 1194
+    points: 100
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties: 
+      - name: ca
+        # I'm so sorry, openvpn needs the ca cert for login via the client
+        # TODO: We need to pull this and replace it for every teams machine :(
+        value: MIIDSzCCAjOgAwIBAgIUNf7YivHK0rWciIy1HsNNx/tGDt4wDQYJKoZIhvcNAQ
+  - name: SSH - Ashoka
+    check_name: SSHCheck
+    host: 10.2.1.7
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+  - name: DNS - Gandhi
+    check_name: DNSCheck
+    host: 10.3.1.1
+    port: 53
+    points: 100
+    environments:
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: gandhi.team1.cybertigers.club
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: bonaparte.team1.cybertigers.club
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: ataturk.team1.cybertigers.club
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: NS
+      - name: domain
+        value: washington.team1.cybertigers.club
+  - name: HTTP - Gandhi
+    check_name: HTTPCheck
+    host: 10.3.1.1
+    port: 80
+    points: 100
+    environments:
+    - matching_content: webmin
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.3.1.1
+      - name: uri
+        value: "/"
+    - matching_content: webmin
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.3.1.1
+      - name: uri
+        value: "/"
+  - name: SSH - Gandhi
+    check_name: SSHCheck
+    host: 10.3.1.1
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+
+  - name: HTTP - Bonaparte
+    check_name: HTTPCheck
+    host: 10.3.1.2
+    port: 80
+    points: 100
+    environments:
+    - matching_content: words can go here
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.3.1.2
+      - name: uri
+        value: "/"
+    - matching_content: words can go here
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.3.1.2
+      - name: uri
+        value: "/"
+  - name: HTTPS - Bonaparte
+    check_name: HTTPSCheck
+    host: 10.3.1.2
+    port: 443
+    points: 100
+    environments:
+    - matching_content: words can go here
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.3.1.2
+      - name: uri
+        value: "/"
+    - matching_content: words can go here
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.3.1.2
+      - name: uri
+        value: "/"
+# TODO ADD THE WinRM Check  - name: HTTPS - Ataturk
+    check_name: HTTPSCheck
+    host: 10.3.1.3
+    port: 443
+    points: 100
+    environments:
+    - matching_content: gitlab
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.3.1.3
+      - name: uri
+        value: "/"
+    - matching_content: gitlab
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.3.1.3
+      - name: uri
+        value: "/"
+  - name: SSH - Ataturk
+    check_name: SSHCheck
+    host: 10.3.1.3
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+- name: Team2
+  color: Blue
+  users:
+  - username: team2user1
+    password: testpass2
+  services:
+  - name: AD - Alexander
+    check_name: LDAPCheck
+    host: 10.2.2.1
+    port: 389
+    points: 50
+    accounts:
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^result: 0 Success"
+      properties:
+      - name: domain
+        value: team2.ists.io
+      - name: base_dn
+        value: dc=team2,dc=ists,dc=io
+  - name: DNS - Alexander
+    check_name: DNSCheck
+    host: 10.2.2.1
+    port: 53
+    points: 100
+    environments:
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: attila.team2.ists.io
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: leonidas.team2.ists.io
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: bismark.team2.ists.io
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: NS
+      - name: domain
+        value: team2.ists.io
+# TODO ADD THE WinRM Check  - name: SMB - Julius
+    check_name: SMBCheck
+    host: 10.2.2.2
+    port: 445
+    points: 100
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: remote_name
+        value: Julius
+      - name: share
+        value: meme_share
+      - name: file
+        value: flag.txt
+      # SHA256 hash of file
+      - name: hash
+        value: 3ac8347c1130bd1ffe9078f99be6cb690baedd9e5552de0f7140c0daded7e1fa
+  - name: FTP - Julius
+    check_name: FTPCheck
+    host: 10.2.2.2
+    port: 21
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: remotefilepath
+        value: "/ftp_files/testfile.txt"
+      - name: filecontents
+        value: Sample file contents
+# TODO ADD THE WinRM Check  - name: Docker API - Churchhill
+    check_name: DockerAPICheck
+    host: 10.2.2.3
+    port: 2375
+    points: 100
+    environments:
+    - matching_content: SUCCESS
+      properties:
+      - name: docker_image
+        value: 'hello-world:latest'
+  - name: SSH - Churchhill
+    check_name: SSHCheck
+    host: 10.2.2.3
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+  - name: HTTP - Leonidas
+    check_name: HTTPCheck
+    host: 10.2.2.4
+    port: 80
+    points: 100
+    environments:
+    # TODO: Whats the string we are looking for here?
+    - matching_content: Just link your credit card, specify the amount, and our country will be better because of
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.2.2.4
+      - name: uri
+        value: "/"
+    - matching_content: Just link your credit card, specify the amount, and our country will be better because of
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.2.2.4
+      - name: uri
+        value: "/"
+  - name: Elasticsearch - Leonidas
+    check_name: ElasticsearchCheck
+    host: 10.2.2.4
+    port: 9200
+    points: 100
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: index
+        value: messages
+      - name: doc_type
+        value: ists_rocks
+  - name: SSH - Leonidas
+    check_name: SSHCheck
+    host: 10.2.2.4
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+  - name: HTTP - Attila
+    check_name: HTTPCheck
+    host: 10.2.2.5
+    port: 80
+    points: 100
+    environments:
+    - matching_content: Just link your credit card, specify the amount, and our country will be better because of
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.2.2.5
+      - name: uri
+        value: "/"
+    - matching_content: Just link your credit card, specify the amount, and our country will be better because of
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.2.2.5
+      - name: uri
+        value: "/"
+  - name: SSH - Attila
+    check_name: SSHCheck
+    host: 10.2.2.5
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+  - name: SMTP - Xerxes
+    check_name: SMTPCheck
+    host: 10.2.2.6
+    port: 25
+    points: 100
+    accounts:
+    - username: edgar@mail.team2.ists.io
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: Successfully sent email
+      properties:
+      - name: touser
+        value: edgar@mail.team2.ists.io
+      - name: subject
+        value: "Edgar Poe! Open up. This is the secret police"
+      - name: body
+        value: "What the jellyfish did you just jellyfishing say about me, you little brick? I'll have you know I graduated top of my class in the Hackistani Seals, and I've been involved in numerous secret raids on Al-Quaeda, and I have over 300 confirmed kills. I am trained in gorilla warfare and I'm the top sniper in the entire Hackistani armed forces. You are nothing to me but just another target. I will wipe you the jellyfish out with precision the likes of which has never been seen before on this Earth, mark my jellyfishing words. You think you can get away with saying that shit to me over the Internet? Think again, jellyfisher. As we speak I am contacting my secret network of spies across the USA and your IP is being traced right now so you better prepare for the storm, maggot. The storm that wipes out the pathetic little thing you call your life. You're jellyfishing dead, kid. I can be anywhere, anytime, and I can kill you in over seven hundred ways, and that's just with my bare hands. Not only am I extensively trained in unarmed combat, but I have access to the entire arsenal of the United States Marine Corps and I will use it to its full extent to wipe your miserable ass off the face of the continent, you little shit. If only you could have known what unholy retribution your little \"clever\" comment was about to bring down upon you, maybe you would have held your jellyfishing tongue. But you couldn't, you didn't, and now you're paying the price, you goddangit idiot. I will shit fury all over you and you will drown in it. You're jellyfishing dead, kiddo."
+# TODO ADD THE WinRM Check
+  - name: OpenVPN - Ashoka
+    check_name: OpenVPNCheck
+    host: 10.2.2.7
+    port: 1194
+    points: 100
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties: 
+      - name: ca
+        # I'm so sorry, openvpn needs the ca cert for login via the client
+        # TODO: We need to pull this and replace it for every teams machine :(
+        value: MIIDSzCCAjOgAwIBAgIUNf7YivHK0rWciIy1HsNNx/tGDt4wDQYJKoZIhvcNAQ
+  - name: SSH - Ashoka
+    check_name: SSHCheck
+    host: 10.2.2.7
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+  - name: DNS - Gandhi
+    check_name: DNSCheck
+    host: 10.3.2.1
+    port: 53
+    points: 100
+    environments:
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: gandhi.team2.cybertigers.club
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: bonaparte.team2.cybertigers.club
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: ataturk.team2.cybertigers.club
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: NS
+      - name: domain
+        value: washington.team2.cybertigers.club
+  - name: HTTP - Gandhi
+    check_name: HTTPCheck
+    host: 10.3.2.1
+    port: 80
+    points: 100
+    environments:
+    - matching_content: webmin
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.3.2.1
+      - name: uri
+        value: "/"
+    - matching_content: webmin
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.3.2.1
+      - name: uri
+        value: "/"
+  - name: SSH - Gandhi
+    check_name: SSHCheck
+    host: 10.3.2.1
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+
+  - name: HTTP - Bonaparte
+    check_name: HTTPCheck
+    host: 10.3.2.2
+    port: 80
+    points: 100
+    environments:
+    - matching_content: words can go here
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.3.2.2
+      - name: uri
+        value: "/"
+    - matching_content: words can go here
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.3.2.2
+      - name: uri
+        value: "/"
+  - name: HTTPS - Bonaparte
+    check_name: HTTPSCheck
+    host: 10.3.2.2
+    port: 443
+    points: 100
+    environments:
+    - matching_content: words can go here
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.3.2.2
+      - name: uri
+        value: "/"
+    - matching_content: words can go here
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.3.2.2
+      - name: uri
+        value: "/"
+# TODO ADD THE WinRM Check  - name: HTTPS - Ataturk
+    check_name: HTTPSCheck
+    host: 10.3.2.3
+    port: 443
+    points: 100
+    environments:
+    - matching_content: gitlab
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.3.2.3
+      - name: uri
+        value: "/"
+    - matching_content: gitlab
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.3.2.3
+      - name: uri
+        value: "/"
+  - name: SSH - Ataturk
+    check_name: SSHCheck
+    host: 10.3.2.3
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+- name: Team3
+  color: Blue
+  users:
+  - username: team3user1
+    password: testpass3
+  services:
+  - name: AD - Alexander
+    check_name: LDAPCheck
+    host: 10.2.3.1
+    port: 389
+    points: 50
+    accounts:
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^result: 0 Success"
+      properties:
+      - name: domain
+        value: team3.ists.io
+      - name: base_dn
+        value: dc=team3,dc=ists,dc=io
+  - name: DNS - Alexander
+    check_name: DNSCheck
+    host: 10.2.3.1
+    port: 53
+    points: 100
+    environments:
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: attila.team3.ists.io
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: leonidas.team3.ists.io
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: bismark.team3.ists.io
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: NS
+      - name: domain
+        value: team3.ists.io
+# TODO ADD THE WinRM Check  - name: SMB - Julius
+    check_name: SMBCheck
+    host: 10.2.3.2
+    port: 445
+    points: 100
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: remote_name
+        value: Julius
+      - name: share
+        value: meme_share
+      - name: file
+        value: flag.txt
+      # SHA256 hash of file
+      - name: hash
+        value: 3ac8347c1130bd1ffe9078f99be6cb690baedd9e5552de0f7140c0daded7e1fa
+  - name: FTP - Julius
+    check_name: FTPCheck
+    host: 10.2.3.2
+    port: 21
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: remotefilepath
+        value: "/ftp_files/testfile.txt"
+      - name: filecontents
+        value: Sample file contents
+# TODO ADD THE WinRM Check  - name: Docker API - Churchhill
+    check_name: DockerAPICheck
+    host: 10.2.3.3
+    port: 2375
+    points: 100
+    environments:
+    - matching_content: SUCCESS
+      properties:
+      - name: docker_image
+        value: 'hello-world:latest'
+  - name: SSH - Churchhill
+    check_name: SSHCheck
+    host: 10.2.3.3
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+  - name: HTTP - Leonidas
+    check_name: HTTPCheck
+    host: 10.2.3.4
+    port: 80
+    points: 100
+    environments:
+    # TODO: Whats the string we are looking for here?
+    - matching_content: Just link your credit card, specify the amount, and our country will be better because of
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.2.3.4
+      - name: uri
+        value: "/"
+    - matching_content: Just link your credit card, specify the amount, and our country will be better because of
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.2.3.4
+      - name: uri
+        value: "/"
+  - name: Elasticsearch - Leonidas
+    check_name: ElasticsearchCheck
+    host: 10.2.3.4
+    port: 9200
+    points: 100
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: index
+        value: messages
+      - name: doc_type
+        value: ists_rocks
+  - name: SSH - Leonidas
+    check_name: SSHCheck
+    host: 10.2.3.4
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+  - name: HTTP - Attila
+    check_name: HTTPCheck
+    host: 10.2.3.5
+    port: 80
+    points: 100
+    environments:
+    - matching_content: Just link your credit card, specify the amount, and our country will be better because of
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.2.3.5
+      - name: uri
+        value: "/"
+    - matching_content: Just link your credit card, specify the amount, and our country will be better because of
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.2.3.5
+      - name: uri
+        value: "/"
+  - name: SSH - Attila
+    check_name: SSHCheck
+    host: 10.2.3.5
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+  - name: SMTP - Xerxes
+    check_name: SMTPCheck
+    host: 10.2.3.6
+    port: 25
+    points: 100
+    accounts:
+    - username: edgar@mail.team3.ists.io
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: Successfully sent email
+      properties:
+      - name: touser
+        value: edgar@mail.team3.ists.io
+      - name: subject
+        value: "Edgar Poe! Open up. This is the secret police"
+      - name: body
+        value: "What the jellyfish did you just jellyfishing say about me, you little brick? I'll have you know I graduated top of my class in the Hackistani Seals, and I've been involved in numerous secret raids on Al-Quaeda, and I have over 300 confirmed kills. I am trained in gorilla warfare and I'm the top sniper in the entire Hackistani armed forces. You are nothing to me but just another target. I will wipe you the jellyfish out with precision the likes of which has never been seen before on this Earth, mark my jellyfishing words. You think you can get away with saying that shit to me over the Internet? Think again, jellyfisher. As we speak I am contacting my secret network of spies across the USA and your IP is being traced right now so you better prepare for the storm, maggot. The storm that wipes out the pathetic little thing you call your life. You're jellyfishing dead, kid. I can be anywhere, anytime, and I can kill you in over seven hundred ways, and that's just with my bare hands. Not only am I extensively trained in unarmed combat, but I have access to the entire arsenal of the United States Marine Corps and I will use it to its full extent to wipe your miserable ass off the face of the continent, you little shit. If only you could have known what unholy retribution your little \"clever\" comment was about to bring down upon you, maybe you would have held your jellyfishing tongue. But you couldn't, you didn't, and now you're paying the price, you goddangit idiot. I will shit fury all over you and you will drown in it. You're jellyfishing dead, kiddo."
+# TODO ADD THE WinRM Check
+  - name: OpenVPN - Ashoka
+    check_name: OpenVPNCheck
+    host: 10.2.3.7
+    port: 1194
+    points: 100
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties: 
+      - name: ca
+        # I'm so sorry, openvpn needs the ca cert for login via the client
+        # TODO: We need to pull this and replace it for every teams machine :(
+        value: MIIDSzCCAjOgAwIBAgIUNf7YivHK0rWciIy1HsNNx/tGDt4wDQYJKoZIhvcNAQ
+  - name: SSH - Ashoka
+    check_name: SSHCheck
+    host: 10.2.3.7
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+  - name: DNS - Gandhi
+    check_name: DNSCheck
+    host: 10.3.3.1
+    port: 53
+    points: 100
+    environments:
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: gandhi.team3.cybertigers.club
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: bonaparte.team3.cybertigers.club
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: ataturk.team3.cybertigers.club
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: NS
+      - name: domain
+        value: washington.team3.cybertigers.club
+  - name: HTTP - Gandhi
+    check_name: HTTPCheck
+    host: 10.3.3.1
+    port: 80
+    points: 100
+    environments:
+    - matching_content: webmin
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.3.3.1
+      - name: uri
+        value: "/"
+    - matching_content: webmin
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.3.3.1
+      - name: uri
+        value: "/"
+  - name: SSH - Gandhi
+    check_name: SSHCheck
+    host: 10.3.3.1
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+
+  - name: HTTP - Bonaparte
+    check_name: HTTPCheck
+    host: 10.3.3.2
+    port: 80
+    points: 100
+    environments:
+    - matching_content: words can go here
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.3.3.2
+      - name: uri
+        value: "/"
+    - matching_content: words can go here
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.3.3.2
+      - name: uri
+        value: "/"
+  - name: HTTPS - Bonaparte
+    check_name: HTTPSCheck
+    host: 10.3.3.2
+    port: 443
+    points: 100
+    environments:
+    - matching_content: words can go here
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.3.3.2
+      - name: uri
+        value: "/"
+    - matching_content: words can go here
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.3.3.2
+      - name: uri
+        value: "/"
+# TODO ADD THE WinRM Check  - name: HTTPS - Ataturk
+    check_name: HTTPSCheck
+    host: 10.3.3.3
+    port: 443
+    points: 100
+    environments:
+    - matching_content: gitlab
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.3.3.3
+      - name: uri
+        value: "/"
+    - matching_content: gitlab
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.3.3.3
+      - name: uri
+        value: "/"
+  - name: SSH - Ataturk
+    check_name: SSHCheck
+    host: 10.3.3.3
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+- name: Team4
+  color: Blue
+  users:
+  - username: team4user1
+    password: testpass4
+  services:
+  - name: AD - Alexander
+    check_name: LDAPCheck
+    host: 10.2.4.1
+    port: 389
+    points: 50
+    accounts:
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^result: 0 Success"
+      properties:
+      - name: domain
+        value: team4.ists.io
+      - name: base_dn
+        value: dc=team4,dc=ists,dc=io
+  - name: DNS - Alexander
+    check_name: DNSCheck
+    host: 10.2.4.1
+    port: 53
+    points: 100
+    environments:
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: attila.team4.ists.io
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: leonidas.team4.ists.io
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: bismark.team4.ists.io
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: NS
+      - name: domain
+        value: team4.ists.io
+# TODO ADD THE WinRM Check  - name: SMB - Julius
+    check_name: SMBCheck
+    host: 10.2.4.2
+    port: 445
+    points: 100
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: remote_name
+        value: Julius
+      - name: share
+        value: meme_share
+      - name: file
+        value: flag.txt
+      # SHA256 hash of file
+      - name: hash
+        value: 3ac8347c1130bd1ffe9078f99be6cb690baedd9e5552de0f7140c0daded7e1fa
+  - name: FTP - Julius
+    check_name: FTPCheck
+    host: 10.2.4.2
+    port: 21
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: remotefilepath
+        value: "/ftp_files/testfile.txt"
+      - name: filecontents
+        value: Sample file contents
+# TODO ADD THE WinRM Check  - name: Docker API - Churchhill
+    check_name: DockerAPICheck
+    host: 10.2.4.3
+    port: 2375
+    points: 100
+    environments:
+    - matching_content: SUCCESS
+      properties:
+      - name: docker_image
+        value: 'hello-world:latest'
+  - name: SSH - Churchhill
+    check_name: SSHCheck
+    host: 10.2.4.3
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+  - name: HTTP - Leonidas
+    check_name: HTTPCheck
+    host: 10.2.4.4
+    port: 80
+    points: 100
+    environments:
+    # TODO: Whats the string we are looking for here?
+    - matching_content: Just link your credit card, specify the amount, and our country will be better because of
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.2.4.4
+      - name: uri
+        value: "/"
+    - matching_content: Just link your credit card, specify the amount, and our country will be better because of
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.2.4.4
+      - name: uri
+        value: "/"
+  - name: Elasticsearch - Leonidas
+    check_name: ElasticsearchCheck
+    host: 10.2.4.4
+    port: 9200
+    points: 100
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: index
+        value: messages
+      - name: doc_type
+        value: ists_rocks
+  - name: SSH - Leonidas
+    check_name: SSHCheck
+    host: 10.2.4.4
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+  - name: HTTP - Attila
+    check_name: HTTPCheck
+    host: 10.2.4.5
+    port: 80
+    points: 100
+    environments:
+    - matching_content: Just link your credit card, specify the amount, and our country will be better because of
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.2.4.5
+      - name: uri
+        value: "/"
+    - matching_content: Just link your credit card, specify the amount, and our country will be better because of
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.2.4.5
+      - name: uri
+        value: "/"
+  - name: SSH - Attila
+    check_name: SSHCheck
+    host: 10.2.4.5
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+  - name: SMTP - Xerxes
+    check_name: SMTPCheck
+    host: 10.2.4.6
+    port: 25
+    points: 100
+    accounts:
+    - username: edgar@mail.team4.ists.io
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: Successfully sent email
+      properties:
+      - name: touser
+        value: edgar@mail.team4.ists.io
+      - name: subject
+        value: "Edgar Poe! Open up. This is the secret police"
+      - name: body
+        value: "What the jellyfish did you just jellyfishing say about me, you little brick? I'll have you know I graduated top of my class in the Hackistani Seals, and I've been involved in numerous secret raids on Al-Quaeda, and I have over 300 confirmed kills. I am trained in gorilla warfare and I'm the top sniper in the entire Hackistani armed forces. You are nothing to me but just another target. I will wipe you the jellyfish out with precision the likes of which has never been seen before on this Earth, mark my jellyfishing words. You think you can get away with saying that shit to me over the Internet? Think again, jellyfisher. As we speak I am contacting my secret network of spies across the USA and your IP is being traced right now so you better prepare for the storm, maggot. The storm that wipes out the pathetic little thing you call your life. You're jellyfishing dead, kid. I can be anywhere, anytime, and I can kill you in over seven hundred ways, and that's just with my bare hands. Not only am I extensively trained in unarmed combat, but I have access to the entire arsenal of the United States Marine Corps and I will use it to its full extent to wipe your miserable ass off the face of the continent, you little shit. If only you could have known what unholy retribution your little \"clever\" comment was about to bring down upon you, maybe you would have held your jellyfishing tongue. But you couldn't, you didn't, and now you're paying the price, you goddangit idiot. I will shit fury all over you and you will drown in it. You're jellyfishing dead, kiddo."
+# TODO ADD THE WinRM Check
+  - name: OpenVPN - Ashoka
+    check_name: OpenVPNCheck
+    host: 10.2.4.7
+    port: 1194
+    points: 100
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties: 
+      - name: ca
+        # I'm so sorry, openvpn needs the ca cert for login via the client
+        # TODO: We need to pull this and replace it for every teams machine :(
+        value: MIIDSzCCAjOgAwIBAgIUNf7YivHK0rWciIy1HsNNx/tGDt4wDQYJKoZIhvcNAQ
+  - name: SSH - Ashoka
+    check_name: SSHCheck
+    host: 10.2.4.7
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+  - name: DNS - Gandhi
+    check_name: DNSCheck
+    host: 10.3.4.1
+    port: 53
+    points: 100
+    environments:
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: gandhi.team4.cybertigers.club
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: bonaparte.team4.cybertigers.club
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: ataturk.team4.cybertigers.club
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: NS
+      - name: domain
+        value: washington.team4.cybertigers.club
+  - name: HTTP - Gandhi
+    check_name: HTTPCheck
+    host: 10.3.4.1
+    port: 80
+    points: 100
+    environments:
+    - matching_content: webmin
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.3.4.1
+      - name: uri
+        value: "/"
+    - matching_content: webmin
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.3.4.1
+      - name: uri
+        value: "/"
+  - name: SSH - Gandhi
+    check_name: SSHCheck
+    host: 10.3.4.1
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+
+  - name: HTTP - Bonaparte
+    check_name: HTTPCheck
+    host: 10.3.4.2
+    port: 80
+    points: 100
+    environments:
+    - matching_content: words can go here
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.3.4.2
+      - name: uri
+        value: "/"
+    - matching_content: words can go here
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.3.4.2
+      - name: uri
+        value: "/"
+  - name: HTTPS - Bonaparte
+    check_name: HTTPSCheck
+    host: 10.3.4.2
+    port: 443
+    points: 100
+    environments:
+    - matching_content: words can go here
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.3.4.2
+      - name: uri
+        value: "/"
+    - matching_content: words can go here
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.3.4.2
+      - name: uri
+        value: "/"
+# TODO ADD THE WinRM Check  - name: HTTPS - Ataturk
+    check_name: HTTPSCheck
+    host: 10.3.4.3
+    port: 443
+    points: 100
+    environments:
+    - matching_content: gitlab
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.3.4.3
+      - name: uri
+        value: "/"
+    - matching_content: gitlab
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.3.4.3
+      - name: uri
+        value: "/"
+  - name: SSH - Ataturk
+    check_name: SSHCheck
+    host: 10.3.4.3
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+- name: Team5
+  color: Blue
+  users:
+  - username: team5user1
+    password: testpass5
+  services:
+  - name: AD - Alexander
+    check_name: LDAPCheck
+    host: 10.2.5.1
+    port: 389
+    points: 50
+    accounts:
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^result: 0 Success"
+      properties:
+      - name: domain
+        value: team5.ists.io
+      - name: base_dn
+        value: dc=team5,dc=ists,dc=io
+  - name: DNS - Alexander
+    check_name: DNSCheck
+    host: 10.2.5.1
+    port: 53
+    points: 100
+    environments:
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: attila.team5.ists.io
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: leonidas.team5.ists.io
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: bismark.team5.ists.io
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: NS
+      - name: domain
+        value: team5.ists.io
+# TODO ADD THE WinRM Check  - name: SMB - Julius
+    check_name: SMBCheck
+    host: 10.2.5.2
+    port: 445
+    points: 100
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: remote_name
+        value: Julius
+      - name: share
+        value: meme_share
+      - name: file
+        value: flag.txt
+      # SHA256 hash of file
+      - name: hash
+        value: 3ac8347c1130bd1ffe9078f99be6cb690baedd9e5552de0f7140c0daded7e1fa
+  - name: FTP - Julius
+    check_name: FTPCheck
+    host: 10.2.5.2
+    port: 21
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: remotefilepath
+        value: "/ftp_files/testfile.txt"
+      - name: filecontents
+        value: Sample file contents
+# TODO ADD THE WinRM Check  - name: Docker API - Churchhill
+    check_name: DockerAPICheck
+    host: 10.2.5.3
+    port: 2375
+    points: 100
+    environments:
+    - matching_content: SUCCESS
+      properties:
+      - name: docker_image
+        value: 'hello-world:latest'
+  - name: SSH - Churchhill
+    check_name: SSHCheck
+    host: 10.2.5.3
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+  - name: HTTP - Leonidas
+    check_name: HTTPCheck
+    host: 10.2.5.4
+    port: 80
+    points: 100
+    environments:
+    # TODO: Whats the string we are looking for here?
+    - matching_content: Just link your credit card, specify the amount, and our country will be better because of
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.2.5.4
+      - name: uri
+        value: "/"
+    - matching_content: Just link your credit card, specify the amount, and our country will be better because of
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.2.5.4
+      - name: uri
+        value: "/"
+  - name: Elasticsearch - Leonidas
+    check_name: ElasticsearchCheck
+    host: 10.2.5.4
+    port: 9200
+    points: 100
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: index
+        value: messages
+      - name: doc_type
+        value: ists_rocks
+  - name: SSH - Leonidas
+    check_name: SSHCheck
+    host: 10.2.5.4
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+  - name: HTTP - Attila
+    check_name: HTTPCheck
+    host: 10.2.5.5
+    port: 80
+    points: 100
+    environments:
+    - matching_content: Just link your credit card, specify the amount, and our country will be better because of
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.2.5.5
+      - name: uri
+        value: "/"
+    - matching_content: Just link your credit card, specify the amount, and our country will be better because of
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.2.5.5
+      - name: uri
+        value: "/"
+  - name: SSH - Attila
+    check_name: SSHCheck
+    host: 10.2.5.5
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+  - name: SMTP - Xerxes
+    check_name: SMTPCheck
+    host: 10.2.5.6
+    port: 25
+    points: 100
+    accounts:
+    - username: edgar@mail.team5.ists.io
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: Successfully sent email
+      properties:
+      - name: touser
+        value: edgar@mail.team5.ists.io
+      - name: subject
+        value: "Edgar Poe! Open up. This is the secret police"
+      - name: body
+        value: "What the jellyfish did you just jellyfishing say about me, you little brick? I'll have you know I graduated top of my class in the Hackistani Seals, and I've been involved in numerous secret raids on Al-Quaeda, and I have over 300 confirmed kills. I am trained in gorilla warfare and I'm the top sniper in the entire Hackistani armed forces. You are nothing to me but just another target. I will wipe you the jellyfish out with precision the likes of which has never been seen before on this Earth, mark my jellyfishing words. You think you can get away with saying that shit to me over the Internet? Think again, jellyfisher. As we speak I am contacting my secret network of spies across the USA and your IP is being traced right now so you better prepare for the storm, maggot. The storm that wipes out the pathetic little thing you call your life. You're jellyfishing dead, kid. I can be anywhere, anytime, and I can kill you in over seven hundred ways, and that's just with my bare hands. Not only am I extensively trained in unarmed combat, but I have access to the entire arsenal of the United States Marine Corps and I will use it to its full extent to wipe your miserable ass off the face of the continent, you little shit. If only you could have known what unholy retribution your little \"clever\" comment was about to bring down upon you, maybe you would have held your jellyfishing tongue. But you couldn't, you didn't, and now you're paying the price, you goddangit idiot. I will shit fury all over you and you will drown in it. You're jellyfishing dead, kiddo."
+# TODO ADD THE WinRM Check
+  - name: OpenVPN - Ashoka
+    check_name: OpenVPNCheck
+    host: 10.2.5.7
+    port: 1194
+    points: 100
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties: 
+      - name: ca
+        # I'm so sorry, openvpn needs the ca cert for login via the client
+        # TODO: We need to pull this and replace it for every teams machine :(
+        value: MIIDSzCCAjOgAwIBAgIUNf7YivHK0rWciIy1HsNNx/tGDt4wDQYJKoZIhvcNAQ
+  - name: SSH - Ashoka
+    check_name: SSHCheck
+    host: 10.2.5.7
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+  - name: DNS - Gandhi
+    check_name: DNSCheck
+    host: 10.3.5.1
+    port: 53
+    points: 100
+    environments:
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: gandhi.team5.cybertigers.club
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: bonaparte.team5.cybertigers.club
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: ataturk.team5.cybertigers.club
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: NS
+      - name: domain
+        value: washington.team5.cybertigers.club
+  - name: HTTP - Gandhi
+    check_name: HTTPCheck
+    host: 10.3.5.1
+    port: 80
+    points: 100
+    environments:
+    - matching_content: webmin
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.3.5.1
+      - name: uri
+        value: "/"
+    - matching_content: webmin
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.3.5.1
+      - name: uri
+        value: "/"
+  - name: SSH - Gandhi
+    check_name: SSHCheck
+    host: 10.3.5.1
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+
+  - name: HTTP - Bonaparte
+    check_name: HTTPCheck
+    host: 10.3.5.2
+    port: 80
+    points: 100
+    environments:
+    - matching_content: words can go here
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.3.5.2
+      - name: uri
+        value: "/"
+    - matching_content: words can go here
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.3.5.2
+      - name: uri
+        value: "/"
+  - name: HTTPS - Bonaparte
+    check_name: HTTPSCheck
+    host: 10.3.5.2
+    port: 443
+    points: 100
+    environments:
+    - matching_content: words can go here
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.3.5.2
+      - name: uri
+        value: "/"
+    - matching_content: words can go here
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.3.5.2
+      - name: uri
+        value: "/"
+# TODO ADD THE WinRM Check  - name: HTTPS - Ataturk
+    check_name: HTTPSCheck
+    host: 10.3.5.3
+    port: 443
+    points: 100
+    environments:
+    - matching_content: gitlab
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.3.5.3
+      - name: uri
+        value: "/"
+    - matching_content: gitlab
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.3.5.3
+      - name: uri
+        value: "/"
+  - name: SSH - Ataturk
+    check_name: SSHCheck
+    host: 10.3.5.3
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+- name: Team6
+  color: Blue
+  users:
+  - username: team6user1
+    password: testpass6
+  services:
+  - name: AD - Alexander
+    check_name: LDAPCheck
+    host: 10.2.6.1
+    port: 389
+    points: 50
+    accounts:
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^result: 0 Success"
+      properties:
+      - name: domain
+        value: team6.ists.io
+      - name: base_dn
+        value: dc=team6,dc=ists,dc=io
+  - name: DNS - Alexander
+    check_name: DNSCheck
+    host: 10.2.6.1
+    port: 53
+    points: 100
+    environments:
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: attila.team6.ists.io
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: leonidas.team6.ists.io
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: bismark.team6.ists.io
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: NS
+      - name: domain
+        value: team6.ists.io
+# TODO ADD THE WinRM Check  - name: SMB - Julius
+    check_name: SMBCheck
+    host: 10.2.6.2
+    port: 445
+    points: 100
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: remote_name
+        value: Julius
+      - name: share
+        value: meme_share
+      - name: file
+        value: flag.txt
+      # SHA256 hash of file
+      - name: hash
+        value: 3ac8347c1130bd1ffe9078f99be6cb690baedd9e5552de0f7140c0daded7e1fa
+  - name: FTP - Julius
+    check_name: FTPCheck
+    host: 10.2.6.2
+    port: 21
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: remotefilepath
+        value: "/ftp_files/testfile.txt"
+      - name: filecontents
+        value: Sample file contents
+# TODO ADD THE WinRM Check  - name: Docker API - Churchhill
+    check_name: DockerAPICheck
+    host: 10.2.6.3
+    port: 2375
+    points: 100
+    environments:
+    - matching_content: SUCCESS
+      properties:
+      - name: docker_image
+        value: 'hello-world:latest'
+  - name: SSH - Churchhill
+    check_name: SSHCheck
+    host: 10.2.6.3
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+  - name: HTTP - Leonidas
+    check_name: HTTPCheck
+    host: 10.2.6.4
+    port: 80
+    points: 100
+    environments:
+    # TODO: Whats the string we are looking for here?
+    - matching_content: Just link your credit card, specify the amount, and our country will be better because of
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.2.6.4
+      - name: uri
+        value: "/"
+    - matching_content: Just link your credit card, specify the amount, and our country will be better because of
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.2.6.4
+      - name: uri
+        value: "/"
+  - name: Elasticsearch - Leonidas
+    check_name: ElasticsearchCheck
+    host: 10.2.6.4
+    port: 9200
+    points: 100
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: index
+        value: messages
+      - name: doc_type
+        value: ists_rocks
+  - name: SSH - Leonidas
+    check_name: SSHCheck
+    host: 10.2.6.4
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+  - name: HTTP - Attila
+    check_name: HTTPCheck
+    host: 10.2.6.5
+    port: 80
+    points: 100
+    environments:
+    - matching_content: Just link your credit card, specify the amount, and our country will be better because of
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.2.6.5
+      - name: uri
+        value: "/"
+    - matching_content: Just link your credit card, specify the amount, and our country will be better because of
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.2.6.5
+      - name: uri
+        value: "/"
+  - name: SSH - Attila
+    check_name: SSHCheck
+    host: 10.2.6.5
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+  - name: SMTP - Xerxes
+    check_name: SMTPCheck
+    host: 10.2.6.6
+    port: 25
+    points: 100
+    accounts:
+    - username: edgar@mail.team6.ists.io
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: Successfully sent email
+      properties:
+      - name: touser
+        value: edgar@mail.team6.ists.io
+      - name: subject
+        value: "Edgar Poe! Open up. This is the secret police"
+      - name: body
+        value: "What the jellyfish did you just jellyfishing say about me, you little brick? I'll have you know I graduated top of my class in the Hackistani Seals, and I've been involved in numerous secret raids on Al-Quaeda, and I have over 300 confirmed kills. I am trained in gorilla warfare and I'm the top sniper in the entire Hackistani armed forces. You are nothing to me but just another target. I will wipe you the jellyfish out with precision the likes of which has never been seen before on this Earth, mark my jellyfishing words. You think you can get away with saying that shit to me over the Internet? Think again, jellyfisher. As we speak I am contacting my secret network of spies across the USA and your IP is being traced right now so you better prepare for the storm, maggot. The storm that wipes out the pathetic little thing you call your life. You're jellyfishing dead, kid. I can be anywhere, anytime, and I can kill you in over seven hundred ways, and that's just with my bare hands. Not only am I extensively trained in unarmed combat, but I have access to the entire arsenal of the United States Marine Corps and I will use it to its full extent to wipe your miserable ass off the face of the continent, you little shit. If only you could have known what unholy retribution your little \"clever\" comment was about to bring down upon you, maybe you would have held your jellyfishing tongue. But you couldn't, you didn't, and now you're paying the price, you goddangit idiot. I will shit fury all over you and you will drown in it. You're jellyfishing dead, kiddo."
+# TODO ADD THE WinRM Check
+  - name: OpenVPN - Ashoka
+    check_name: OpenVPNCheck
+    host: 10.2.6.7
+    port: 1194
+    points: 100
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties: 
+      - name: ca
+        # I'm so sorry, openvpn needs the ca cert for login via the client
+        # TODO: We need to pull this and replace it for every teams machine :(
+        value: MIIDSzCCAjOgAwIBAgIUNf7YivHK0rWciIy1HsNNx/tGDt4wDQYJKoZIhvcNAQ
+  - name: SSH - Ashoka
+    check_name: SSHCheck
+    host: 10.2.6.7
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+  - name: DNS - Gandhi
+    check_name: DNSCheck
+    host: 10.3.6.1
+    port: 53
+    points: 100
+    environments:
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: gandhi.team6.cybertigers.club
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: bonaparte.team6.cybertigers.club
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: ataturk.team6.cybertigers.club
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: NS
+      - name: domain
+        value: washington.team6.cybertigers.club
+  - name: HTTP - Gandhi
+    check_name: HTTPCheck
+    host: 10.3.6.1
+    port: 80
+    points: 100
+    environments:
+    - matching_content: webmin
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.3.6.1
+      - name: uri
+        value: "/"
+    - matching_content: webmin
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.3.6.1
+      - name: uri
+        value: "/"
+  - name: SSH - Gandhi
+    check_name: SSHCheck
+    host: 10.3.6.1
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+
+  - name: HTTP - Bonaparte
+    check_name: HTTPCheck
+    host: 10.3.6.2
+    port: 80
+    points: 100
+    environments:
+    - matching_content: words can go here
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.3.6.2
+      - name: uri
+        value: "/"
+    - matching_content: words can go here
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.3.6.2
+      - name: uri
+        value: "/"
+  - name: HTTPS - Bonaparte
+    check_name: HTTPSCheck
+    host: 10.3.6.2
+    port: 443
+    points: 100
+    environments:
+    - matching_content: words can go here
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.3.6.2
+      - name: uri
+        value: "/"
+    - matching_content: words can go here
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.3.6.2
+      - name: uri
+        value: "/"
+# TODO ADD THE WinRM Check  - name: HTTPS - Ataturk
+    check_name: HTTPSCheck
+    host: 10.3.6.3
+    port: 443
+    points: 100
+    environments:
+    - matching_content: gitlab
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.3.6.3
+      - name: uri
+        value: "/"
+    - matching_content: gitlab
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.3.6.3
+      - name: uri
+        value: "/"
+  - name: SSH - Ataturk
+    check_name: SSHCheck
+    host: 10.3.6.3
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+- name: Team7
+  color: Blue
+  users:
+  - username: team7user1
+    password: testpass7
+  services:
+  - name: AD - Alexander
+    check_name: LDAPCheck
+    host: 10.2.7.1
+    port: 389
+    points: 50
+    accounts:
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^result: 0 Success"
+      properties:
+      - name: domain
+        value: team7.ists.io
+      - name: base_dn
+        value: dc=team7,dc=ists,dc=io
+  - name: DNS - Alexander
+    check_name: DNSCheck
+    host: 10.2.7.1
+    port: 53
+    points: 100
+    environments:
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: attila.team7.ists.io
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: leonidas.team7.ists.io
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: bismark.team7.ists.io
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: NS
+      - name: domain
+        value: team7.ists.io
+# TODO ADD THE WinRM Check  - name: SMB - Julius
+    check_name: SMBCheck
+    host: 10.2.7.2
+    port: 445
+    points: 100
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: remote_name
+        value: Julius
+      - name: share
+        value: meme_share
+      - name: file
+        value: flag.txt
+      # SHA256 hash of file
+      - name: hash
+        value: 3ac8347c1130bd1ffe9078f99be6cb690baedd9e5552de0f7140c0daded7e1fa
+  - name: FTP - Julius
+    check_name: FTPCheck
+    host: 10.2.7.2
+    port: 21
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: remotefilepath
+        value: "/ftp_files/testfile.txt"
+      - name: filecontents
+        value: Sample file contents
+# TODO ADD THE WinRM Check  - name: Docker API - Churchhill
+    check_name: DockerAPICheck
+    host: 10.2.7.3
+    port: 2375
+    points: 100
+    environments:
+    - matching_content: SUCCESS
+      properties:
+      - name: docker_image
+        value: 'hello-world:latest'
+  - name: SSH - Churchhill
+    check_name: SSHCheck
+    host: 10.2.7.3
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+  - name: HTTP - Leonidas
+    check_name: HTTPCheck
+    host: 10.2.7.4
+    port: 80
+    points: 100
+    environments:
+    # TODO: Whats the string we are looking for here?
+    - matching_content: Just link your credit card, specify the amount, and our country will be better because of
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.2.7.4
+      - name: uri
+        value: "/"
+    - matching_content: Just link your credit card, specify the amount, and our country will be better because of
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.2.7.4
+      - name: uri
+        value: "/"
+  - name: Elasticsearch - Leonidas
+    check_name: ElasticsearchCheck
+    host: 10.2.7.4
+    port: 9200
+    points: 100
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: index
+        value: messages
+      - name: doc_type
+        value: ists_rocks
+  - name: SSH - Leonidas
+    check_name: SSHCheck
+    host: 10.2.7.4
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+  - name: HTTP - Attila
+    check_name: HTTPCheck
+    host: 10.2.7.5
+    port: 80
+    points: 100
+    environments:
+    - matching_content: Just link your credit card, specify the amount, and our country will be better because of
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.2.7.5
+      - name: uri
+        value: "/"
+    - matching_content: Just link your credit card, specify the amount, and our country will be better because of
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.2.7.5
+      - name: uri
+        value: "/"
+  - name: SSH - Attila
+    check_name: SSHCheck
+    host: 10.2.7.5
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+  - name: SMTP - Xerxes
+    check_name: SMTPCheck
+    host: 10.2.7.6
+    port: 25
+    points: 100
+    accounts:
+    - username: edgar@mail.team7.ists.io
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: Successfully sent email
+      properties:
+      - name: touser
+        value: edgar@mail.team7.ists.io
+      - name: subject
+        value: "Edgar Poe! Open up. This is the secret police"
+      - name: body
+        value: "What the jellyfish did you just jellyfishing say about me, you little brick? I'll have you know I graduated top of my class in the Hackistani Seals, and I've been involved in numerous secret raids on Al-Quaeda, and I have over 300 confirmed kills. I am trained in gorilla warfare and I'm the top sniper in the entire Hackistani armed forces. You are nothing to me but just another target. I will wipe you the jellyfish out with precision the likes of which has never been seen before on this Earth, mark my jellyfishing words. You think you can get away with saying that shit to me over the Internet? Think again, jellyfisher. As we speak I am contacting my secret network of spies across the USA and your IP is being traced right now so you better prepare for the storm, maggot. The storm that wipes out the pathetic little thing you call your life. You're jellyfishing dead, kid. I can be anywhere, anytime, and I can kill you in over seven hundred ways, and that's just with my bare hands. Not only am I extensively trained in unarmed combat, but I have access to the entire arsenal of the United States Marine Corps and I will use it to its full extent to wipe your miserable ass off the face of the continent, you little shit. If only you could have known what unholy retribution your little \"clever\" comment was about to bring down upon you, maybe you would have held your jellyfishing tongue. But you couldn't, you didn't, and now you're paying the price, you goddangit idiot. I will shit fury all over you and you will drown in it. You're jellyfishing dead, kiddo."
+# TODO ADD THE WinRM Check
+  - name: OpenVPN - Ashoka
+    check_name: OpenVPNCheck
+    host: 10.2.7.7
+    port: 1194
+    points: 100
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties: 
+      - name: ca
+        # I'm so sorry, openvpn needs the ca cert for login via the client
+        # TODO: We need to pull this and replace it for every teams machine :(
+        value: MIIDSzCCAjOgAwIBAgIUNf7YivHK0rWciIy1HsNNx/tGDt4wDQYJKoZIhvcNAQ
+  - name: SSH - Ashoka
+    check_name: SSHCheck
+    host: 10.2.7.7
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+  - name: DNS - Gandhi
+    check_name: DNSCheck
+    host: 10.3.7.1
+    port: 53
+    points: 100
+    environments:
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: gandhi.team7.cybertigers.club
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: bonaparte.team7.cybertigers.club
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: ataturk.team7.cybertigers.club
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: NS
+      - name: domain
+        value: washington.team7.cybertigers.club
+  - name: HTTP - Gandhi
+    check_name: HTTPCheck
+    host: 10.3.7.1
+    port: 80
+    points: 100
+    environments:
+    - matching_content: webmin
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.3.7.1
+      - name: uri
+        value: "/"
+    - matching_content: webmin
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.3.7.1
+      - name: uri
+        value: "/"
+  - name: SSH - Gandhi
+    check_name: SSHCheck
+    host: 10.3.7.1
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+
+  - name: HTTP - Bonaparte
+    check_name: HTTPCheck
+    host: 10.3.7.2
+    port: 80
+    points: 100
+    environments:
+    - matching_content: words can go here
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.3.7.2
+      - name: uri
+        value: "/"
+    - matching_content: words can go here
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.3.7.2
+      - name: uri
+        value: "/"
+  - name: HTTPS - Bonaparte
+    check_name: HTTPSCheck
+    host: 10.3.7.2
+    port: 443
+    points: 100
+    environments:
+    - matching_content: words can go here
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.3.7.2
+      - name: uri
+        value: "/"
+    - matching_content: words can go here
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.3.7.2
+      - name: uri
+        value: "/"
+# TODO ADD THE WinRM Check  - name: HTTPS - Ataturk
+    check_name: HTTPSCheck
+    host: 10.3.7.3
+    port: 443
+    points: 100
+    environments:
+    - matching_content: gitlab
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.3.7.3
+      - name: uri
+        value: "/"
+    - matching_content: gitlab
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.3.7.3
+      - name: uri
+        value: "/"
+  - name: SSH - Ataturk
+    check_name: SSHCheck
+    host: 10.3.7.3
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+- name: Team8
+  color: Blue
+  users:
+  - username: team8user1
+    password: testpass8
+  services:
+  - name: AD - Alexander
+    check_name: LDAPCheck
+    host: 10.2.8.1
+    port: 389
+    points: 50
+    accounts:
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^result: 0 Success"
+      properties:
+      - name: domain
+        value: team8.ists.io
+      - name: base_dn
+        value: dc=team8,dc=ists,dc=io
+  - name: DNS - Alexander
+    check_name: DNSCheck
+    host: 10.2.8.1
+    port: 53
+    points: 100
+    environments:
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: attila.team8.ists.io
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: leonidas.team8.ists.io
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: bismark.team8.ists.io
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: NS
+      - name: domain
+        value: team8.ists.io
+# TODO ADD THE WinRM Check  - name: SMB - Julius
+    check_name: SMBCheck
+    host: 10.2.8.2
+    port: 445
+    points: 100
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: remote_name
+        value: Julius
+      - name: share
+        value: meme_share
+      - name: file
+        value: flag.txt
+      # SHA256 hash of file
+      - name: hash
+        value: 3ac8347c1130bd1ffe9078f99be6cb690baedd9e5552de0f7140c0daded7e1fa
+  - name: FTP - Julius
+    check_name: FTPCheck
+    host: 10.2.8.2
+    port: 21
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: remotefilepath
+        value: "/ftp_files/testfile.txt"
+      - name: filecontents
+        value: Sample file contents
+# TODO ADD THE WinRM Check  - name: Docker API - Churchhill
+    check_name: DockerAPICheck
+    host: 10.2.8.3
+    port: 2375
+    points: 100
+    environments:
+    - matching_content: SUCCESS
+      properties:
+      - name: docker_image
+        value: 'hello-world:latest'
+  - name: SSH - Churchhill
+    check_name: SSHCheck
+    host: 10.2.8.3
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+  - name: HTTP - Leonidas
+    check_name: HTTPCheck
+    host: 10.2.8.4
+    port: 80
+    points: 100
+    environments:
+    # TODO: Whats the string we are looking for here?
+    - matching_content: Just link your credit card, specify the amount, and our country will be better because of
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.2.8.4
+      - name: uri
+        value: "/"
+    - matching_content: Just link your credit card, specify the amount, and our country will be better because of
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.2.8.4
+      - name: uri
+        value: "/"
+  - name: Elasticsearch - Leonidas
+    check_name: ElasticsearchCheck
+    host: 10.2.8.4
+    port: 9200
+    points: 100
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: index
+        value: messages
+      - name: doc_type
+        value: ists_rocks
+  - name: SSH - Leonidas
+    check_name: SSHCheck
+    host: 10.2.8.4
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+  - name: HTTP - Attila
+    check_name: HTTPCheck
+    host: 10.2.8.5
+    port: 80
+    points: 100
+    environments:
+    - matching_content: Just link your credit card, specify the amount, and our country will be better because of
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.2.8.5
+      - name: uri
+        value: "/"
+    - matching_content: Just link your credit card, specify the amount, and our country will be better because of
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.2.8.5
+      - name: uri
+        value: "/"
+  - name: SSH - Attila
+    check_name: SSHCheck
+    host: 10.2.8.5
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+  - name: SMTP - Xerxes
+    check_name: SMTPCheck
+    host: 10.2.8.6
+    port: 25
+    points: 100
+    accounts:
+    - username: edgar@mail.team8.ists.io
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: Successfully sent email
+      properties:
+      - name: touser
+        value: edgar@mail.team8.ists.io
+      - name: subject
+        value: "Edgar Poe! Open up. This is the secret police"
+      - name: body
+        value: "What the jellyfish did you just jellyfishing say about me, you little brick? I'll have you know I graduated top of my class in the Hackistani Seals, and I've been involved in numerous secret raids on Al-Quaeda, and I have over 300 confirmed kills. I am trained in gorilla warfare and I'm the top sniper in the entire Hackistani armed forces. You are nothing to me but just another target. I will wipe you the jellyfish out with precision the likes of which has never been seen before on this Earth, mark my jellyfishing words. You think you can get away with saying that shit to me over the Internet? Think again, jellyfisher. As we speak I am contacting my secret network of spies across the USA and your IP is being traced right now so you better prepare for the storm, maggot. The storm that wipes out the pathetic little thing you call your life. You're jellyfishing dead, kid. I can be anywhere, anytime, and I can kill you in over seven hundred ways, and that's just with my bare hands. Not only am I extensively trained in unarmed combat, but I have access to the entire arsenal of the United States Marine Corps and I will use it to its full extent to wipe your miserable ass off the face of the continent, you little shit. If only you could have known what unholy retribution your little \"clever\" comment was about to bring down upon you, maybe you would have held your jellyfishing tongue. But you couldn't, you didn't, and now you're paying the price, you goddangit idiot. I will shit fury all over you and you will drown in it. You're jellyfishing dead, kiddo."
+# TODO ADD THE WinRM Check
+  - name: OpenVPN - Ashoka
+    check_name: OpenVPNCheck
+    host: 10.2.8.7
+    port: 1194
+    points: 100
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties: 
+      - name: ca
+        # I'm so sorry, openvpn needs the ca cert for login via the client
+        # TODO: We need to pull this and replace it for every teams machine :(
+        value: MIIDSzCCAjOgAwIBAgIUNf7YivHK0rWciIy1HsNNx/tGDt4wDQYJKoZIhvcNAQ
+  - name: SSH - Ashoka
+    check_name: SSHCheck
+    host: 10.2.8.7
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+  - name: DNS - Gandhi
+    check_name: DNSCheck
+    host: 10.3.8.1
+    port: 53
+    points: 100
+    environments:
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: gandhi.team8.cybertigers.club
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: bonaparte.team8.cybertigers.club
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: ataturk.team8.cybertigers.club
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: NS
+      - name: domain
+        value: washington.team8.cybertigers.club
+  - name: HTTP - Gandhi
+    check_name: HTTPCheck
+    host: 10.3.8.1
+    port: 80
+    points: 100
+    environments:
+    - matching_content: webmin
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.3.8.1
+      - name: uri
+        value: "/"
+    - matching_content: webmin
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.3.8.1
+      - name: uri
+        value: "/"
+  - name: SSH - Gandhi
+    check_name: SSHCheck
+    host: 10.3.8.1
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+
+  - name: HTTP - Bonaparte
+    check_name: HTTPCheck
+    host: 10.3.8.2
+    port: 80
+    points: 100
+    environments:
+    - matching_content: words can go here
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.3.8.2
+      - name: uri
+        value: "/"
+    - matching_content: words can go here
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.3.8.2
+      - name: uri
+        value: "/"
+  - name: HTTPS - Bonaparte
+    check_name: HTTPSCheck
+    host: 10.3.8.2
+    port: 443
+    points: 100
+    environments:
+    - matching_content: words can go here
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.3.8.2
+      - name: uri
+        value: "/"
+    - matching_content: words can go here
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.3.8.2
+      - name: uri
+        value: "/"
+# TODO ADD THE WinRM Check  - name: HTTPS - Ataturk
+    check_name: HTTPSCheck
+    host: 10.3.8.3
+    port: 443
+    points: 100
+    environments:
+    - matching_content: gitlab
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.3.8.3
+      - name: uri
+        value: "/"
+    - matching_content: gitlab
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.3.8.3
+      - name: uri
+        value: "/"
+  - name: SSH - Ataturk
+    check_name: SSHCheck
+    host: 10.3.8.3
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+- name: Team9
+  color: Blue
+  users:
+  - username: team9user1
+    password: testpass9
+  services:
+  - name: AD - Alexander
+    check_name: LDAPCheck
+    host: 10.2.9.1
+    port: 389
+    points: 50
+    accounts:
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^result: 0 Success"
+      properties:
+      - name: domain
+        value: team9.ists.io
+      - name: base_dn
+        value: dc=team9,dc=ists,dc=io
+  - name: DNS - Alexander
+    check_name: DNSCheck
+    host: 10.2.9.1
+    port: 53
+    points: 100
+    environments:
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: attila.team9.ists.io
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: leonidas.team9.ists.io
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: bismark.team9.ists.io
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: NS
+      - name: domain
+        value: team9.ists.io
+# TODO ADD THE WinRM Check  - name: SMB - Julius
+    check_name: SMBCheck
+    host: 10.2.9.2
+    port: 445
+    points: 100
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: remote_name
+        value: Julius
+      - name: share
+        value: meme_share
+      - name: file
+        value: flag.txt
+      # SHA256 hash of file
+      - name: hash
+        value: 3ac8347c1130bd1ffe9078f99be6cb690baedd9e5552de0f7140c0daded7e1fa
+  - name: FTP - Julius
+    check_name: FTPCheck
+    host: 10.2.9.2
+    port: 21
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: remotefilepath
+        value: "/ftp_files/testfile.txt"
+      - name: filecontents
+        value: Sample file contents
+# TODO ADD THE WinRM Check  - name: Docker API - Churchhill
+    check_name: DockerAPICheck
+    host: 10.2.9.3
+    port: 2375
+    points: 100
+    environments:
+    - matching_content: SUCCESS
+      properties:
+      - name: docker_image
+        value: 'hello-world:latest'
+  - name: SSH - Churchhill
+    check_name: SSHCheck
+    host: 10.2.9.3
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+  - name: HTTP - Leonidas
+    check_name: HTTPCheck
+    host: 10.2.9.4
+    port: 80
+    points: 100
+    environments:
+    # TODO: Whats the string we are looking for here?
+    - matching_content: Just link your credit card, specify the amount, and our country will be better because of
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.2.9.4
+      - name: uri
+        value: "/"
+    - matching_content: Just link your credit card, specify the amount, and our country will be better because of
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.2.9.4
+      - name: uri
+        value: "/"
+  - name: Elasticsearch - Leonidas
+    check_name: ElasticsearchCheck
+    host: 10.2.9.4
+    port: 9200
+    points: 100
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: index
+        value: messages
+      - name: doc_type
+        value: ists_rocks
+  - name: SSH - Leonidas
+    check_name: SSHCheck
+    host: 10.2.9.4
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+  - name: HTTP - Attila
+    check_name: HTTPCheck
+    host: 10.2.9.5
+    port: 80
+    points: 100
+    environments:
+    - matching_content: Just link your credit card, specify the amount, and our country will be better because of
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.2.9.5
+      - name: uri
+        value: "/"
+    - matching_content: Just link your credit card, specify the amount, and our country will be better because of
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.2.9.5
+      - name: uri
+        value: "/"
+  - name: SSH - Attila
+    check_name: SSHCheck
+    host: 10.2.9.5
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+  - name: SMTP - Xerxes
+    check_name: SMTPCheck
+    host: 10.2.9.6
+    port: 25
+    points: 100
+    accounts:
+    - username: edgar@mail.team9.ists.io
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: Successfully sent email
+      properties:
+      - name: touser
+        value: edgar@mail.team9.ists.io
+      - name: subject
+        value: "Edgar Poe! Open up. This is the secret police"
+      - name: body
+        value: "What the jellyfish did you just jellyfishing say about me, you little brick? I'll have you know I graduated top of my class in the Hackistani Seals, and I've been involved in numerous secret raids on Al-Quaeda, and I have over 300 confirmed kills. I am trained in gorilla warfare and I'm the top sniper in the entire Hackistani armed forces. You are nothing to me but just another target. I will wipe you the jellyfish out with precision the likes of which has never been seen before on this Earth, mark my jellyfishing words. You think you can get away with saying that shit to me over the Internet? Think again, jellyfisher. As we speak I am contacting my secret network of spies across the USA and your IP is being traced right now so you better prepare for the storm, maggot. The storm that wipes out the pathetic little thing you call your life. You're jellyfishing dead, kid. I can be anywhere, anytime, and I can kill you in over seven hundred ways, and that's just with my bare hands. Not only am I extensively trained in unarmed combat, but I have access to the entire arsenal of the United States Marine Corps and I will use it to its full extent to wipe your miserable ass off the face of the continent, you little shit. If only you could have known what unholy retribution your little \"clever\" comment was about to bring down upon you, maybe you would have held your jellyfishing tongue. But you couldn't, you didn't, and now you're paying the price, you goddangit idiot. I will shit fury all over you and you will drown in it. You're jellyfishing dead, kiddo."
+# TODO ADD THE WinRM Check
+  - name: OpenVPN - Ashoka
+    check_name: OpenVPNCheck
+    host: 10.2.9.7
+    port: 1194
+    points: 100
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties: 
+      - name: ca
+        # I'm so sorry, openvpn needs the ca cert for login via the client
+        # TODO: We need to pull this and replace it for every teams machine :(
+        value: MIIDSzCCAjOgAwIBAgIUNf7YivHK0rWciIy1HsNNx/tGDt4wDQYJKoZIhvcNAQ
+  - name: SSH - Ashoka
+    check_name: SSHCheck
+    host: 10.2.9.7
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+  - name: DNS - Gandhi
+    check_name: DNSCheck
+    host: 10.3.9.1
+    port: 53
+    points: 100
+    environments:
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: gandhi.team9.cybertigers.club
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: bonaparte.team9.cybertigers.club
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: ataturk.team9.cybertigers.club
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: NS
+      - name: domain
+        value: washington.team9.cybertigers.club
+  - name: HTTP - Gandhi
+    check_name: HTTPCheck
+    host: 10.3.9.1
+    port: 80
+    points: 100
+    environments:
+    - matching_content: webmin
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.3.9.1
+      - name: uri
+        value: "/"
+    - matching_content: webmin
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.3.9.1
+      - name: uri
+        value: "/"
+  - name: SSH - Gandhi
+    check_name: SSHCheck
+    host: 10.3.9.1
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+
+  - name: HTTP - Bonaparte
+    check_name: HTTPCheck
+    host: 10.3.9.2
+    port: 80
+    points: 100
+    environments:
+    - matching_content: words can go here
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.3.9.2
+      - name: uri
+        value: "/"
+    - matching_content: words can go here
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.3.9.2
+      - name: uri
+        value: "/"
+  - name: HTTPS - Bonaparte
+    check_name: HTTPSCheck
+    host: 10.3.9.2
+    port: 443
+    points: 100
+    environments:
+    - matching_content: words can go here
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.3.9.2
+      - name: uri
+        value: "/"
+    - matching_content: words can go here
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.3.9.2
+      - name: uri
+        value: "/"
+# TODO ADD THE WinRM Check  - name: HTTPS - Ataturk
+    check_name: HTTPSCheck
+    host: 10.3.9.3
+    port: 443
+    points: 100
+    environments:
+    - matching_content: gitlab
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.3.9.3
+      - name: uri
+        value: "/"
+    - matching_content: gitlab
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.3.9.3
+      - name: uri
+        value: "/"
+  - name: SSH - Ataturk
+    check_name: SSHCheck
+    host: 10.3.9.3
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+- name: Team10
+  color: Blue
+  users:
+  - username: team10user1
+    password: testpass10
+  services:
+  - name: AD - Alexander
+    check_name: LDAPCheck
+    host: 10.2.10.1
+    port: 389
+    points: 50
+    accounts:
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^result: 0 Success"
+      properties:
+      - name: domain
+        value: team10.ists.io
+      - name: base_dn
+        value: dc=team10,dc=ists,dc=io
+  - name: DNS - Alexander
+    check_name: DNSCheck
+    host: 10.2.10.1
+    port: 53
+    points: 100
+    environments:
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: attila.team10.ists.io
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: leonidas.team10.ists.io
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: bismark.team10.ists.io
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: NS
+      - name: domain
+        value: team10.ists.io
+# TODO ADD THE WinRM Check  - name: SMB - Julius
+    check_name: SMBCheck
+    host: 10.2.10.2
+    port: 445
+    points: 100
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: remote_name
+        value: Julius
+      - name: share
+        value: meme_share
+      - name: file
+        value: flag.txt
+      # SHA256 hash of file
+      - name: hash
+        value: 3ac8347c1130bd1ffe9078f99be6cb690baedd9e5552de0f7140c0daded7e1fa
+  - name: FTP - Julius
+    check_name: FTPCheck
+    host: 10.2.10.2
+    port: 21
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: remotefilepath
+        value: "/ftp_files/testfile.txt"
+      - name: filecontents
+        value: Sample file contents
+# TODO ADD THE WinRM Check  - name: Docker API - Churchhill
+    check_name: DockerAPICheck
+    host: 10.2.10.3
+    port: 2375
+    points: 100
+    environments:
+    - matching_content: SUCCESS
+      properties:
+      - name: docker_image
+        value: 'hello-world:latest'
+  - name: SSH - Churchhill
+    check_name: SSHCheck
+    host: 10.2.10.3
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+  - name: HTTP - Leonidas
+    check_name: HTTPCheck
+    host: 10.2.10.4
+    port: 80
+    points: 100
+    environments:
+    # TODO: Whats the string we are looking for here?
+    - matching_content: Just link your credit card, specify the amount, and our country will be better because of
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.2.10.4
+      - name: uri
+        value: "/"
+    - matching_content: Just link your credit card, specify the amount, and our country will be better because of
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.2.10.4
+      - name: uri
+        value: "/"
+  - name: Elasticsearch - Leonidas
+    check_name: ElasticsearchCheck
+    host: 10.2.10.4
+    port: 9200
+    points: 100
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: index
+        value: messages
+      - name: doc_type
+        value: ists_rocks
+  - name: SSH - Leonidas
+    check_name: SSHCheck
+    host: 10.2.10.4
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+  - name: HTTP - Attila
+    check_name: HTTPCheck
+    host: 10.2.10.5
+    port: 80
+    points: 100
+    environments:
+    - matching_content: Just link your credit card, specify the amount, and our country will be better because of
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.2.10.5
+      - name: uri
+        value: "/"
+    - matching_content: Just link your credit card, specify the amount, and our country will be better because of
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.2.10.5
+      - name: uri
+        value: "/"
+  - name: SSH - Attila
+    check_name: SSHCheck
+    host: 10.2.10.5
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+  - name: SMTP - Xerxes
+    check_name: SMTPCheck
+    host: 10.2.10.6
+    port: 25
+    points: 100
+    accounts:
+    - username: edgar@mail.team10.ists.io
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: Successfully sent email
+      properties:
+      - name: touser
+        value: edgar@mail.team10.ists.io
+      - name: subject
+        value: "Edgar Poe! Open up. This is the secret police"
+      - name: body
+        value: "What the jellyfish did you just jellyfishing say about me, you little brick? I'll have you know I graduated top of my class in the Hackistani Seals, and I've been involved in numerous secret raids on Al-Quaeda, and I have over 300 confirmed kills. I am trained in gorilla warfare and I'm the top sniper in the entire Hackistani armed forces. You are nothing to me but just another target. I will wipe you the jellyfish out with precision the likes of which has never been seen before on this Earth, mark my jellyfishing words. You think you can get away with saying that shit to me over the Internet? Think again, jellyfisher. As we speak I am contacting my secret network of spies across the USA and your IP is being traced right now so you better prepare for the storm, maggot. The storm that wipes out the pathetic little thing you call your life. You're jellyfishing dead, kid. I can be anywhere, anytime, and I can kill you in over seven hundred ways, and that's just with my bare hands. Not only am I extensively trained in unarmed combat, but I have access to the entire arsenal of the United States Marine Corps and I will use it to its full extent to wipe your miserable ass off the face of the continent, you little shit. If only you could have known what unholy retribution your little \"clever\" comment was about to bring down upon you, maybe you would have held your jellyfishing tongue. But you couldn't, you didn't, and now you're paying the price, you goddangit idiot. I will shit fury all over you and you will drown in it. You're jellyfishing dead, kiddo."
+# TODO ADD THE WinRM Check
+  - name: OpenVPN - Ashoka
+    check_name: OpenVPNCheck
+    host: 10.2.10.7
+    port: 1194
+    points: 100
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties: 
+      - name: ca
+        # I'm so sorry, openvpn needs the ca cert for login via the client
+        # TODO: We need to pull this and replace it for every teams machine :(
+        value: MIIDSzCCAjOgAwIBAgIUNf7YivHK0rWciIy1HsNNx/tGDt4wDQYJKoZIhvcNAQ
+  - name: SSH - Ashoka
+    check_name: SSHCheck
+    host: 10.2.10.7
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+  - name: DNS - Gandhi
+    check_name: DNSCheck
+    host: 10.3.10.1
+    port: 53
+    points: 100
+    environments:
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: gandhi.team10.cybertigers.club
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: bonaparte.team10.cybertigers.club
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: ataturk.team10.cybertigers.club
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: NS
+      - name: domain
+        value: washington.team10.cybertigers.club
+  - name: HTTP - Gandhi
+    check_name: HTTPCheck
+    host: 10.3.10.1
+    port: 80
+    points: 100
+    environments:
+    - matching_content: webmin
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.3.10.1
+      - name: uri
+        value: "/"
+    - matching_content: webmin
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.3.10.1
+      - name: uri
+        value: "/"
+  - name: SSH - Gandhi
+    check_name: SSHCheck
+    host: 10.3.10.1
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+
+  - name: HTTP - Bonaparte
+    check_name: HTTPCheck
+    host: 10.3.10.2
+    port: 80
+    points: 100
+    environments:
+    - matching_content: words can go here
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.3.10.2
+      - name: uri
+        value: "/"
+    - matching_content: words can go here
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.3.10.2
+      - name: uri
+        value: "/"
+  - name: HTTPS - Bonaparte
+    check_name: HTTPSCheck
+    host: 10.3.10.2
+    port: 443
+    points: 100
+    environments:
+    - matching_content: words can go here
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.3.10.2
+      - name: uri
+        value: "/"
+    - matching_content: words can go here
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.3.10.2
+      - name: uri
+        value: "/"
+# TODO ADD THE WinRM Check  - name: HTTPS - Ataturk
+    check_name: HTTPSCheck
+    host: 10.3.10.3
+    port: 443
+    points: 100
+    environments:
+    - matching_content: gitlab
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.3.10.3
+      - name: uri
+        value: "/"
+    - matching_content: gitlab
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.3.10.3
+      - name: uri
+        value: "/"
+  - name: SSH - Ataturk
+    check_name: SSHCheck
+    host: 10.3.10.3
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+- name: Team11
+  color: Blue
+  users:
+  - username: team11user1
+    password: testpass11
+  services:
+  - name: AD - Alexander
+    check_name: LDAPCheck
+    host: 10.2.11.1
+    port: 389
+    points: 50
+    accounts:
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^result: 0 Success"
+      properties:
+      - name: domain
+        value: team11.ists.io
+      - name: base_dn
+        value: dc=team11,dc=ists,dc=io
+  - name: DNS - Alexander
+    check_name: DNSCheck
+    host: 10.2.11.1
+    port: 53
+    points: 100
+    environments:
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: attila.team11.ists.io
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: leonidas.team11.ists.io
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: bismark.team11.ists.io
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: NS
+      - name: domain
+        value: team11.ists.io
+# TODO ADD THE WinRM Check  - name: SMB - Julius
+    check_name: SMBCheck
+    host: 10.2.11.2
+    port: 445
+    points: 100
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: remote_name
+        value: Julius
+      - name: share
+        value: meme_share
+      - name: file
+        value: flag.txt
+      # SHA256 hash of file
+      - name: hash
+        value: 3ac8347c1130bd1ffe9078f99be6cb690baedd9e5552de0f7140c0daded7e1fa
+  - name: FTP - Julius
+    check_name: FTPCheck
+    host: 10.2.11.2
+    port: 21
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: remotefilepath
+        value: "/ftp_files/testfile.txt"
+      - name: filecontents
+        value: Sample file contents
+# TODO ADD THE WinRM Check  - name: Docker API - Churchhill
+    check_name: DockerAPICheck
+    host: 10.2.11.3
+    port: 2375
+    points: 100
+    environments:
+    - matching_content: SUCCESS
+      properties:
+      - name: docker_image
+        value: 'hello-world:latest'
+  - name: SSH - Churchhill
+    check_name: SSHCheck
+    host: 10.2.11.3
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+  - name: HTTP - Leonidas
+    check_name: HTTPCheck
+    host: 10.2.11.4
+    port: 80
+    points: 100
+    environments:
+    # TODO: Whats the string we are looking for here?
+    - matching_content: Just link your credit card, specify the amount, and our country will be better because of
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.2.11.4
+      - name: uri
+        value: "/"
+    - matching_content: Just link your credit card, specify the amount, and our country will be better because of
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.2.11.4
+      - name: uri
+        value: "/"
+  - name: Elasticsearch - Leonidas
+    check_name: ElasticsearchCheck
+    host: 10.2.11.4
+    port: 9200
+    points: 100
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: index
+        value: messages
+      - name: doc_type
+        value: ists_rocks
+  - name: SSH - Leonidas
+    check_name: SSHCheck
+    host: 10.2.11.4
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+  - name: HTTP - Attila
+    check_name: HTTPCheck
+    host: 10.2.11.5
+    port: 80
+    points: 100
+    environments:
+    - matching_content: Just link your credit card, specify the amount, and our country will be better because of
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.2.11.5
+      - name: uri
+        value: "/"
+    - matching_content: Just link your credit card, specify the amount, and our country will be better because of
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.2.11.5
+      - name: uri
+        value: "/"
+  - name: SSH - Attila
+    check_name: SSHCheck
+    host: 10.2.11.5
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+  - name: SMTP - Xerxes
+    check_name: SMTPCheck
+    host: 10.2.11.6
+    port: 25
+    points: 100
+    accounts:
+    - username: edgar@mail.team11.ists.io
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: Successfully sent email
+      properties:
+      - name: touser
+        value: edgar@mail.team11.ists.io
+      - name: subject
+        value: "Edgar Poe! Open up. This is the secret police"
+      - name: body
+        value: "What the jellyfish did you just jellyfishing say about me, you little brick? I'll have you know I graduated top of my class in the Hackistani Seals, and I've been involved in numerous secret raids on Al-Quaeda, and I have over 300 confirmed kills. I am trained in gorilla warfare and I'm the top sniper in the entire Hackistani armed forces. You are nothing to me but just another target. I will wipe you the jellyfish out with precision the likes of which has never been seen before on this Earth, mark my jellyfishing words. You think you can get away with saying that shit to me over the Internet? Think again, jellyfisher. As we speak I am contacting my secret network of spies across the USA and your IP is being traced right now so you better prepare for the storm, maggot. The storm that wipes out the pathetic little thing you call your life. You're jellyfishing dead, kid. I can be anywhere, anytime, and I can kill you in over seven hundred ways, and that's just with my bare hands. Not only am I extensively trained in unarmed combat, but I have access to the entire arsenal of the United States Marine Corps and I will use it to its full extent to wipe your miserable ass off the face of the continent, you little shit. If only you could have known what unholy retribution your little \"clever\" comment was about to bring down upon you, maybe you would have held your jellyfishing tongue. But you couldn't, you didn't, and now you're paying the price, you goddangit idiot. I will shit fury all over you and you will drown in it. You're jellyfishing dead, kiddo."
+# TODO ADD THE WinRM Check
+  - name: OpenVPN - Ashoka
+    check_name: OpenVPNCheck
+    host: 10.2.11.7
+    port: 1194
+    points: 100
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties: 
+      - name: ca
+        # I'm so sorry, openvpn needs the ca cert for login via the client
+        # TODO: We need to pull this and replace it for every teams machine :(
+        value: MIIDSzCCAjOgAwIBAgIUNf7YivHK0rWciIy1HsNNx/tGDt4wDQYJKoZIhvcNAQ
+  - name: SSH - Ashoka
+    check_name: SSHCheck
+    host: 10.2.11.7
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+  - name: DNS - Gandhi
+    check_name: DNSCheck
+    host: 10.3.11.1
+    port: 53
+    points: 100
+    environments:
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: gandhi.team11.cybertigers.club
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: bonaparte.team11.cybertigers.club
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: ataturk.team11.cybertigers.club
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: NS
+      - name: domain
+        value: washington.team11.cybertigers.club
+  - name: HTTP - Gandhi
+    check_name: HTTPCheck
+    host: 10.3.11.1
+    port: 80
+    points: 100
+    environments:
+    - matching_content: webmin
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.3.11.1
+      - name: uri
+        value: "/"
+    - matching_content: webmin
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.3.11.1
+      - name: uri
+        value: "/"
+  - name: SSH - Gandhi
+    check_name: SSHCheck
+    host: 10.3.11.1
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+
+  - name: HTTP - Bonaparte
+    check_name: HTTPCheck
+    host: 10.3.11.2
+    port: 80
+    points: 100
+    environments:
+    - matching_content: words can go here
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.3.11.2
+      - name: uri
+        value: "/"
+    - matching_content: words can go here
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.3.11.2
+      - name: uri
+        value: "/"
+  - name: HTTPS - Bonaparte
+    check_name: HTTPSCheck
+    host: 10.3.11.2
+    port: 443
+    points: 100
+    environments:
+    - matching_content: words can go here
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.3.11.2
+      - name: uri
+        value: "/"
+    - matching_content: words can go here
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.3.11.2
+      - name: uri
+        value: "/"
+# TODO ADD THE WinRM Check  - name: HTTPS - Ataturk
+    check_name: HTTPSCheck
+    host: 10.3.11.3
+    port: 443
+    points: 100
+    environments:
+    - matching_content: gitlab
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.3.11.3
+      - name: uri
+        value: "/"
+    - matching_content: gitlab
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.3.11.3
+      - name: uri
+        value: "/"
+  - name: SSH - Ataturk
+    check_name: SSHCheck
+    host: 10.3.11.3
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+- name: Team12
+  color: Blue
+  users:
+  - username: team12user1
+    password: testpass12
+  services:
+  - name: AD - Alexander
+    check_name: LDAPCheck
+    host: 10.2.12.1
+    port: 389
+    points: 50
+    accounts:
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^result: 0 Success"
+      properties:
+      - name: domain
+        value: team12.ists.io
+      - name: base_dn
+        value: dc=team12,dc=ists,dc=io
+  - name: DNS - Alexander
+    check_name: DNSCheck
+    host: 10.2.12.1
+    port: 53
+    points: 100
+    environments:
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: attila.team12.ists.io
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: leonidas.team12.ists.io
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: bismark.team12.ists.io
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: NS
+      - name: domain
+        value: team12.ists.io
+# TODO ADD THE WinRM Check  - name: SMB - Julius
+    check_name: SMBCheck
+    host: 10.2.12.2
+    port: 445
+    points: 100
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: remote_name
+        value: Julius
+      - name: share
+        value: meme_share
+      - name: file
+        value: flag.txt
+      # SHA256 hash of file
+      - name: hash
+        value: 3ac8347c1130bd1ffe9078f99be6cb690baedd9e5552de0f7140c0daded7e1fa
+  - name: FTP - Julius
+    check_name: FTPCheck
+    host: 10.2.12.2
+    port: 21
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: remotefilepath
+        value: "/ftp_files/testfile.txt"
+      - name: filecontents
+        value: Sample file contents
+# TODO ADD THE WinRM Check  - name: Docker API - Churchhill
+    check_name: DockerAPICheck
+    host: 10.2.12.3
+    port: 2375
+    points: 100
+    environments:
+    - matching_content: SUCCESS
+      properties:
+      - name: docker_image
+        value: 'hello-world:latest'
+  - name: SSH - Churchhill
+    check_name: SSHCheck
+    host: 10.2.12.3
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+  - name: HTTP - Leonidas
+    check_name: HTTPCheck
+    host: 10.2.12.4
+    port: 80
+    points: 100
+    environments:
+    # TODO: Whats the string we are looking for here?
+    - matching_content: Just link your credit card, specify the amount, and our country will be better because of
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.2.12.4
+      - name: uri
+        value: "/"
+    - matching_content: Just link your credit card, specify the amount, and our country will be better because of
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.2.12.4
+      - name: uri
+        value: "/"
+  - name: Elasticsearch - Leonidas
+    check_name: ElasticsearchCheck
+    host: 10.2.12.4
+    port: 9200
+    points: 100
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: index
+        value: messages
+      - name: doc_type
+        value: ists_rocks
+  - name: SSH - Leonidas
+    check_name: SSHCheck
+    host: 10.2.12.4
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+  - name: HTTP - Attila
+    check_name: HTTPCheck
+    host: 10.2.12.5
+    port: 80
+    points: 100
+    environments:
+    - matching_content: Just link your credit card, specify the amount, and our country will be better because of
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.2.12.5
+      - name: uri
+        value: "/"
+    - matching_content: Just link your credit card, specify the amount, and our country will be better because of
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.2.12.5
+      - name: uri
+        value: "/"
+  - name: SSH - Attila
+    check_name: SSHCheck
+    host: 10.2.12.5
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+  - name: SMTP - Xerxes
+    check_name: SMTPCheck
+    host: 10.2.12.6
+    port: 25
+    points: 100
+    accounts:
+    - username: edgar@mail.team12.ists.io
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: Successfully sent email
+      properties:
+      - name: touser
+        value: edgar@mail.team12.ists.io
+      - name: subject
+        value: "Edgar Poe! Open up. This is the secret police"
+      - name: body
+        value: "What the jellyfish did you just jellyfishing say about me, you little brick? I'll have you know I graduated top of my class in the Hackistani Seals, and I've been involved in numerous secret raids on Al-Quaeda, and I have over 300 confirmed kills. I am trained in gorilla warfare and I'm the top sniper in the entire Hackistani armed forces. You are nothing to me but just another target. I will wipe you the jellyfish out with precision the likes of which has never been seen before on this Earth, mark my jellyfishing words. You think you can get away with saying that shit to me over the Internet? Think again, jellyfisher. As we speak I am contacting my secret network of spies across the USA and your IP is being traced right now so you better prepare for the storm, maggot. The storm that wipes out the pathetic little thing you call your life. You're jellyfishing dead, kid. I can be anywhere, anytime, and I can kill you in over seven hundred ways, and that's just with my bare hands. Not only am I extensively trained in unarmed combat, but I have access to the entire arsenal of the United States Marine Corps and I will use it to its full extent to wipe your miserable ass off the face of the continent, you little shit. If only you could have known what unholy retribution your little \"clever\" comment was about to bring down upon you, maybe you would have held your jellyfishing tongue. But you couldn't, you didn't, and now you're paying the price, you goddangit idiot. I will shit fury all over you and you will drown in it. You're jellyfishing dead, kiddo."
+# TODO ADD THE WinRM Check
+  - name: OpenVPN - Ashoka
+    check_name: OpenVPNCheck
+    host: 10.2.12.7
+    port: 1194
+    points: 100
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties: 
+      - name: ca
+        # I'm so sorry, openvpn needs the ca cert for login via the client
+        # TODO: We need to pull this and replace it for every teams machine :(
+        value: MIIDSzCCAjOgAwIBAgIUNf7YivHK0rWciIy1HsNNx/tGDt4wDQYJKoZIhvcNAQ
+  - name: SSH - Ashoka
+    check_name: SSHCheck
+    host: 10.2.12.7
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+  - name: DNS - Gandhi
+    check_name: DNSCheck
+    host: 10.3.12.1
+    port: 53
+    points: 100
+    environments:
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: gandhi.team12.cybertigers.club
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: bonaparte.team12.cybertigers.club
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: ataturk.team12.cybertigers.club
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: NS
+      - name: domain
+        value: washington.team12.cybertigers.club
+  - name: HTTP - Gandhi
+    check_name: HTTPCheck
+    host: 10.3.12.1
+    port: 80
+    points: 100
+    environments:
+    - matching_content: webmin
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.3.12.1
+      - name: uri
+        value: "/"
+    - matching_content: webmin
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.3.12.1
+      - name: uri
+        value: "/"
+  - name: SSH - Gandhi
+    check_name: SSHCheck
+    host: 10.3.12.1
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+
+  - name: HTTP - Bonaparte
+    check_name: HTTPCheck
+    host: 10.3.12.2
+    port: 80
+    points: 100
+    environments:
+    - matching_content: words can go here
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.3.12.2
+      - name: uri
+        value: "/"
+    - matching_content: words can go here
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.3.12.2
+      - name: uri
+        value: "/"
+  - name: HTTPS - Bonaparte
+    check_name: HTTPSCheck
+    host: 10.3.12.2
+    port: 443
+    points: 100
+    environments:
+    - matching_content: words can go here
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.3.12.2
+      - name: uri
+        value: "/"
+    - matching_content: words can go here
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.3.12.2
+      - name: uri
+        value: "/"
+# TODO ADD THE WinRM Check  - name: HTTPS - Ataturk
+    check_name: HTTPSCheck
+    host: 10.3.12.3
+    port: 443
+    points: 100
+    environments:
+    - matching_content: gitlab
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.3.12.3
+      - name: uri
+        value: "/"
+    - matching_content: gitlab
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.3.12.3
+      - name: uri
+        value: "/"
+  - name: SSH - Ataturk
+    check_name: SSHCheck
+    host: 10.3.12.3
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+- name: Team13
+  color: Blue
+  users:
+  - username: team13user1
+    password: testpass13
+  services:
+  - name: AD - Alexander
+    check_name: LDAPCheck
+    host: 10.2.13.1
+    port: 389
+    points: 50
+    accounts:
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^result: 0 Success"
+      properties:
+      - name: domain
+        value: team13.ists.io
+      - name: base_dn
+        value: dc=team13,dc=ists,dc=io
+  - name: DNS - Alexander
+    check_name: DNSCheck
+    host: 10.2.13.1
+    port: 53
+    points: 100
+    environments:
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: attila.team13.ists.io
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: leonidas.team13.ists.io
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: bismark.team13.ists.io
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: NS
+      - name: domain
+        value: team13.ists.io
+# TODO ADD THE WinRM Check  - name: SMB - Julius
+    check_name: SMBCheck
+    host: 10.2.13.2
+    port: 445
+    points: 100
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: remote_name
+        value: Julius
+      - name: share
+        value: meme_share
+      - name: file
+        value: flag.txt
+      # SHA256 hash of file
+      - name: hash
+        value: 3ac8347c1130bd1ffe9078f99be6cb690baedd9e5552de0f7140c0daded7e1fa
+  - name: FTP - Julius
+    check_name: FTPCheck
+    host: 10.2.13.2
+    port: 21
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: remotefilepath
+        value: "/ftp_files/testfile.txt"
+      - name: filecontents
+        value: Sample file contents
+# TODO ADD THE WinRM Check  - name: Docker API - Churchhill
+    check_name: DockerAPICheck
+    host: 10.2.13.3
+    port: 2375
+    points: 100
+    environments:
+    - matching_content: SUCCESS
+      properties:
+      - name: docker_image
+        value: 'hello-world:latest'
+  - name: SSH - Churchhill
+    check_name: SSHCheck
+    host: 10.2.13.3
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+  - name: HTTP - Leonidas
+    check_name: HTTPCheck
+    host: 10.2.13.4
+    port: 80
+    points: 100
+    environments:
+    # TODO: Whats the string we are looking for here?
+    - matching_content: Just link your credit card, specify the amount, and our country will be better because of
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.2.13.4
+      - name: uri
+        value: "/"
+    - matching_content: Just link your credit card, specify the amount, and our country will be better because of
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.2.13.4
+      - name: uri
+        value: "/"
+  - name: Elasticsearch - Leonidas
+    check_name: ElasticsearchCheck
+    host: 10.2.13.4
+    port: 9200
+    points: 100
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: index
+        value: messages
+      - name: doc_type
+        value: ists_rocks
+  - name: SSH - Leonidas
+    check_name: SSHCheck
+    host: 10.2.13.4
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+  - name: HTTP - Attila
+    check_name: HTTPCheck
+    host: 10.2.13.5
+    port: 80
+    points: 100
+    environments:
+    - matching_content: Just link your credit card, specify the amount, and our country will be better because of
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.2.13.5
+      - name: uri
+        value: "/"
+    - matching_content: Just link your credit card, specify the amount, and our country will be better because of
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.2.13.5
+      - name: uri
+        value: "/"
+  - name: SSH - Attila
+    check_name: SSHCheck
+    host: 10.2.13.5
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+  - name: SMTP - Xerxes
+    check_name: SMTPCheck
+    host: 10.2.13.6
+    port: 25
+    points: 100
+    accounts:
+    - username: edgar@mail.team13.ists.io
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: Successfully sent email
+      properties:
+      - name: touser
+        value: edgar@mail.team13.ists.io
+      - name: subject
+        value: "Edgar Poe! Open up. This is the secret police"
+      - name: body
+        value: "What the jellyfish did you just jellyfishing say about me, you little brick? I'll have you know I graduated top of my class in the Hackistani Seals, and I've been involved in numerous secret raids on Al-Quaeda, and I have over 300 confirmed kills. I am trained in gorilla warfare and I'm the top sniper in the entire Hackistani armed forces. You are nothing to me but just another target. I will wipe you the jellyfish out with precision the likes of which has never been seen before on this Earth, mark my jellyfishing words. You think you can get away with saying that shit to me over the Internet? Think again, jellyfisher. As we speak I am contacting my secret network of spies across the USA and your IP is being traced right now so you better prepare for the storm, maggot. The storm that wipes out the pathetic little thing you call your life. You're jellyfishing dead, kid. I can be anywhere, anytime, and I can kill you in over seven hundred ways, and that's just with my bare hands. Not only am I extensively trained in unarmed combat, but I have access to the entire arsenal of the United States Marine Corps and I will use it to its full extent to wipe your miserable ass off the face of the continent, you little shit. If only you could have known what unholy retribution your little \"clever\" comment was about to bring down upon you, maybe you would have held your jellyfishing tongue. But you couldn't, you didn't, and now you're paying the price, you goddangit idiot. I will shit fury all over you and you will drown in it. You're jellyfishing dead, kiddo."
+# TODO ADD THE WinRM Check
+  - name: OpenVPN - Ashoka
+    check_name: OpenVPNCheck
+    host: 10.2.13.7
+    port: 1194
+    points: 100
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties: 
+      - name: ca
+        # I'm so sorry, openvpn needs the ca cert for login via the client
+        # TODO: We need to pull this and replace it for every teams machine :(
+        value: MIIDSzCCAjOgAwIBAgIUNf7YivHK0rWciIy1HsNNx/tGDt4wDQYJKoZIhvcNAQ
+  - name: SSH - Ashoka
+    check_name: SSHCheck
+    host: 10.2.13.7
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+  - name: DNS - Gandhi
+    check_name: DNSCheck
+    host: 10.3.13.1
+    port: 53
+    points: 100
+    environments:
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: gandhi.team13.cybertigers.club
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: bonaparte.team13.cybertigers.club
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: ataturk.team13.cybertigers.club
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: NS
+      - name: domain
+        value: washington.team13.cybertigers.club
+  - name: HTTP - Gandhi
+    check_name: HTTPCheck
+    host: 10.3.13.1
+    port: 80
+    points: 100
+    environments:
+    - matching_content: webmin
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.3.13.1
+      - name: uri
+        value: "/"
+    - matching_content: webmin
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.3.13.1
+      - name: uri
+        value: "/"
+  - name: SSH - Gandhi
+    check_name: SSHCheck
+    host: 10.3.13.1
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+
+  - name: HTTP - Bonaparte
+    check_name: HTTPCheck
+    host: 10.3.13.2
+    port: 80
+    points: 100
+    environments:
+    - matching_content: words can go here
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.3.13.2
+      - name: uri
+        value: "/"
+    - matching_content: words can go here
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.3.13.2
+      - name: uri
+        value: "/"
+  - name: HTTPS - Bonaparte
+    check_name: HTTPSCheck
+    host: 10.3.13.2
+    port: 443
+    points: 100
+    environments:
+    - matching_content: words can go here
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.3.13.2
+      - name: uri
+        value: "/"
+    - matching_content: words can go here
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.3.13.2
+      - name: uri
+        value: "/"
+# TODO ADD THE WinRM Check  - name: HTTPS - Ataturk
+    check_name: HTTPSCheck
+    host: 10.3.13.3
+    port: 443
+    points: 100
+    environments:
+    - matching_content: gitlab
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.3.13.3
+      - name: uri
+        value: "/"
+    - matching_content: gitlab
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.3.13.3
+      - name: uri
+        value: "/"
+  - name: SSH - Ataturk
+    check_name: SSHCheck
+    host: 10.3.13.3
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps

@@ -1,0 +1,29 @@
+  - name: Docker API - Churchhill
+    check_name: DockerAPICheck
+    host: 10.2.$TEAM.3
+    port: 2375
+    points: 100
+    environments:
+    - matching_content: SUCCESS
+      properties:
+      - name: docker_image
+        value: 'hello-world:latest'
+  - name: SSH - Churchhill
+    check_name: SSHCheck
+    host: 10.2.$TEAM.3
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps

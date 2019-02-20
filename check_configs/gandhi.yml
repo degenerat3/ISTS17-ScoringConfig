@@ -1,0 +1,71 @@
+  - name: DNS - Gandhi
+    check_name: DNSCheck
+    host: 10.3.$TEAM.1
+    port: 53
+    points: 100
+    environments:
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: gandhi.team$TEAM.cybertigers.club
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: bonaparte.team$TEAM.cybertigers.club
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: ataturk.team$TEAM.cybertigers.club
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: NS
+      - name: domain
+        value: washington.team$TEAM.cybertigers.club
+  - name: HTTP - Gandhi
+    check_name: HTTPCheck
+    host: 10.3.$TEAM.1
+    port: 80
+    points: 100
+    environments:
+    - matching_content: webmin
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 10.3.$TEAM.1
+      - name: uri
+        value: "/"
+    - matching_content: webmin
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: 10.3.$TEAM.1
+      - name: uri
+        value: "/"
+  - name: SSH - Gandhi
+    check_name: SSHCheck
+    host: 10.3.$TEAM.1
+    port: 22
+    points: 150
+    accounts:
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps

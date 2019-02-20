@@ -1,0 +1,6 @@
+- name: Team$TEAM
+  color: Blue
+  users:
+  - username: team$TEAMuser1
+    password: testpass$TEAM
+  services:

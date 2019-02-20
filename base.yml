@@ -1,0 +1,12 @@
+---
+teams:
+- name: WhiteTeam
+  color: White
+  users:
+  - username: whiteteamuser
+    password: testpass
+- name: RedTeam
+  color: Red
+  users:
+  - username: redteamuser
+    password: testpass
