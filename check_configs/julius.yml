@@ -16,10 +16,10 @@
       - name: share
         value: meme_share
       - name: file
-        value: flag.txt
+        value: "7 - smo5eYv.jpg"
       # SHA256 hash of file
       - name: hash
-        value: 3ac8347c1130bd1ffe9078f99be6cb690baedd9e5552de0f7140c0daded7e1fa
+        value: 8a85b035a0564f67db8a7bb2852e426bec4608def318c160a88098da84054f1b
   - name: FTP - Julius
     check_name: FTPCheck
     host: 10.2.$TEAM.2
