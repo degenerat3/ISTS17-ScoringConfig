@@ -2,21 +2,21 @@
 import yaml
 
 TEAM_LOW = 0
-TEAM_HIGH = 0
+TEAM_HIGH = 13
 
 checks = [
     # Local net
     "Alexander",
-    #"Julius",
-    #"Churchhill",
-    #"Leonidas",
-    #"Attila",
-    #"Xerxes",
-    #"Ashoka",
+    "Julius",
+    "Churchhill",
+    "Leonidas",
+    "Attila",
+    "Xerxes",
+    "Ashoka",
     # Cloud net
-    #"Gandhi",
-    #"Bonaparte",
-    #"Ataturk"
+    "Gandhi",
+    "Bonaparte",
+    "Ataturk"
     ]
 
 def build_team(team):
