@@ -37,4 +37,18 @@
         value: "/ftp_files/testfile.txt"
       - name: filecontents
         value: Sample file contents
-# TODO ADD THE WinRM Check
+  - name: WinRM - Julius
+    check_name: winrmCheck
+    host: 10.2.$TEAM.2
+    port: 5985
+    points: 150
+    accounts:
+    - username: martha
+      password: rockyou.txt-SUCKS!
+    - username: jeff
+      password: rockyou.txt-SUCKS!
+    environments:
+    - matching_content: "CHECKINFLAG"
+      properties:
+      - name: commands
+        value: echo CHECKINFLAG
