@@ -17,18 +17,18 @@
         value: "Edgar Poe! Open up. This is the secret police"
       - name: body
         value: "What the jellyfish did you just jellyfishing say about me, you little brick?"
-#  - name: WinRM - Xerxes
-#    check_name: winrmCheck
-#    host: 10.2.$TEAM.6
-#    port: 5985
-#    points: 150
-#    accounts:
-#    - username: martha
-#      password: "rockyou.txt-SUCKS!"
-#    - username: jeff
-#      password: "rockyou.txt-SUCKS!"
-#    environments:
-#    - matching_content: "CHECKINFLAG"
-#      properties:
-#      - name: commands
-#        value: echo CHECKINFLAG
+  - name: WinRM - Xerxes
+    check_name: winrmCheck
+    host: 10.2.$TEAM.6
+    port: 5985
+    points: 150
+    accounts:
+    - username: martha
+      password: "rockyou.txt-SUCKS!"
+    - username: jeff
+      password: "rockyou.txt-SUCKS!"
+    environments:
+    - matching_content: "Spaceminersareprettylame"
+      properties:
+      - name: commands
+        value: echo Spaceminersareprettylame
