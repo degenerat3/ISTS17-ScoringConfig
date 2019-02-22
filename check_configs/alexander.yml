@@ -1,21 +1,21 @@
-  - name: AD - Alexander
+  - name: AD
     check_name: LDAPCheck
     host: 10.2.$TEAM.1
     port: 389
     points: 50
     accounts:
     - username: martha
-      password: rockyou.txt-SUCKS!
+      password: "rockyou.txt-SUCKS!"
     - username: jeff
-      password: rockyou.txt-SUCKS!
+      password: "rockyou.txt-SUCKS!"
     environments:
     - matching_content: "^result: 0 Success"
       properties:
       - name: domain
-        value: team$TEAM.ists.io
+        value: "team$TEAM.ists.io"
       - name: base_dn
-        value: dc=team$TEAM,dc=ists,dc=io
-  - name: DNS - Alexander
+        value: "dc=team$TEAM,dc=ists,dc=io"
+  - name: DNS
     check_name: DNSCheck
     host: 10.2.$TEAM.1
     port: 53
@@ -44,19 +44,19 @@
       - name: qtype
         value: NS
       - name: domain
-        value: team$TEAM.ists.io
-  - name: WinRM - Alexander
-    check_name: winrmCheck
-    host: 10.2.$TEAM.1
-    port: 5985
-    points: 150
-    accounts:
-    - username: martha
-      password: rockyou.txt-SUCKS!
-    - username: jeff
-      password: rockyou.txt-SUCKS!
-    environments:
-    - matching_content: "CHECKINFLAG"
-      properties:
-      - name: commands
-        value: echo CHECKINFLAG
+        value: "team$TEAM.ists.io"
+#  - name: WinRM
+#    check_name: winrmCheck
+#    host: 10.2.$TEAM.1
+#    port: 5985
+#    points: 150
+#    accounts:
+#    - username: martha
+#      password: "rockyou.txt-SUCKS!"
+#    - username: jeff
+#      password: "rockyou.txt-SUCKS!"
+#    environments:
+#    - matching_content: "CHECKINFLAG"
+#      properties:
+#      - name: commands
+#        value: echo CHECKINFLAG

@@ -1,13 +1,13 @@
-  - name: OpenVPN - Ashoka
+  - name: OpenVPN
     check_name: OpenVPNCheck
     host: 10.2.$TEAM.7
     port: 1194
     points: 100
     accounts:
     - username: jeff
-      password: rockyou.txt-SUCKS!
+      password: "rockyou.txt-SUCKS!"
     - username: martha
-      password: rockyou.txt-SUCKS!
+      password: "rockyou.txt-SUCKS!"
     environments:
     - matching_content: "^SUCCESS"
       properties: 
@@ -15,21 +15,21 @@
         # I'm so sorry, openvpn needs the ca cert for login via the client
         # TODO: We need to pull this and replace it for every teams machine :(
         value: MIIDSzCCAjOgAwIBAgIUNf7YivHK0rWciIy1HsNNx/tGDt4wDQYJKoZIhvcNAQ
-  - name: SSH - Ashoka
+  - name: "SSH - Ashoka"
     check_name: SSHCheck
     host: 10.2.$TEAM.7
     port: 22
     points: 150
     accounts:
     - username: jeff
-      password: rockyou.txt-SUCKS!
+      password: "rockyou.txt-SUCKS!"
     - username: martha
-      password: rockyou.txt-SUCKS!
+      password: "rockyou.txt-SUCKS!"
     environments:
     - matching_content: "^SUCCESS"
       properties:
       - name: commands
-        value: id;ls -l /home
+        value: "id;ls -l /home"
     - matching_content: PID
       properties:
       - name: commands

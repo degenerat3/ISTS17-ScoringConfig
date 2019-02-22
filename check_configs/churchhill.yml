@@ -15,9 +15,9 @@
     points: 150
     accounts:
     - username: jeff
-      password: rockyou.txt-SUCKS!
+      password: "rockyou.txt-SUCKS!"
     - username: martha
-      password: rockyou.txt-SUCKS!
+      password: "rockyou.txt-SUCKS!"
     environments:
     - matching_content: "^SUCCESS"
       properties:
