@@ -1,4 +1,4 @@
-  - name: AD
+  - name: AD - Alexander
     check_name: LDAPCheck
     host: 10.2.$TEAM.1
     port: 389
@@ -15,7 +15,7 @@
         value: "team$TEAM.ists.io"
       - name: base_dn
         value: "dc=team$TEAM,dc=ists,dc=io"
-  - name: DNS
+  - name: DNS - Alexander
     check_name: DNSCheck
     host: 10.2.$TEAM.1
     port: 53
@@ -45,7 +45,7 @@
         value: NS
       - name: domain
         value: "team$TEAM.ists.io"
-#  - name: WinRM
+#  - name: WinRM - Alexander
 #    check_name: winrmCheck
 #    host: 10.2.$TEAM.1
 #    port: 5985

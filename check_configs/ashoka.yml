@@ -1,4 +1,4 @@
-  - name: OpenVPN
+  - name: OpenVPN - Ashoka
     check_name: OpenVPNCheck
     host: 10.2.$TEAM.7
     port: 1194

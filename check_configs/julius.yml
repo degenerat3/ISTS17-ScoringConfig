@@ -1,4 +1,4 @@
-  - name: SMB
+  - name: SMB - Julius
     check_name: SMBCheck
     host: 10.2.$TEAM.2
     port: 445
@@ -20,7 +20,7 @@
       # SHA256 hash of file
       - name: hash
         value: 3ac8347c1130bd1ffe9078f99be6cb690baedd9e5552de0f7140c0daded7e1fa
-  - name: FTP
+  - name: FTP - Julius
     check_name: FTPCheck
     host: 10.2.$TEAM.2
     port: 21

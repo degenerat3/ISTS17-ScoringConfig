@@ -16,7 +16,7 @@ teams:
   - username: team0user1
     password: testpass0
   services:
-  - name: AD
+  - name: AD - Alexander
     check_name: LDAPCheck
     host: 10.2.0.1
     port: 389
@@ -33,7 +33,7 @@ teams:
         value: "team0.ists.io"
       - name: base_dn
         value: "dc=team0,dc=ists,dc=io"
-  - name: DNS
+  - name: DNS - Alexander
     check_name: DNSCheck
     host: 10.2.0.1
     port: 53
@@ -63,7 +63,7 @@ teams:
         value: NS
       - name: domain
         value: "team0.ists.io"
-#  - name: WinRM
+#  - name: WinRM - Alexander
 #    check_name: winrmCheck
 #    host: 10.2.0.1
 #    port: 5985
@@ -78,7 +78,7 @@ teams:
 #      properties:
 #      - name: commands
 #        value: echo CHECKINFLAG
-  - name: SMB
+  - name: SMB - Julius
     check_name: SMBCheck
     host: 10.2.0.2
     port: 445
@@ -100,7 +100,7 @@ teams:
       # SHA256 hash of file
       - name: hash
         value: 3ac8347c1130bd1ffe9078f99be6cb690baedd9e5552de0f7140c0daded7e1fa
-  - name: FTP
+  - name: FTP - Julius
     check_name: FTPCheck
     host: 10.2.0.2
     port: 21
@@ -132,7 +132,7 @@ teams:
 #      properties:
 #      - name: commands
 #        value: echo Spaceminersareprettylame
-  - name: Docker API
+  - name: Docker API - Churchhill
     check_name: DockerAPICheck
     host: 10.2.0.3
     port: 2375
@@ -256,7 +256,41 @@ teams:
       properties:
       - name: commands
         value: ps
-  - name: OpenVPN
+  - name: SMTP - Xerxes
+    check_name: SMTPCheck
+    host: 10.2.0.6
+    port: 25
+    points: 100
+    accounts:
+    - username: jeff@mail.team0.ists.io
+      password: "rockyou.txt-SUCKS!"
+    environments:
+    - matching_content: Successfully sent email
+      properties:
+      # TODO: This domain might not be correct. I cant find where the ansible is installing it
+      # but whiteteam said to use this for mail
+      - name: touser
+        value: jeff@mail.team0.ists.io
+      - name: subject
+        value: "Edgar Poe! Open up. This is the secret police"
+      - name: body
+        value: "What the jellyfish did you just jellyfishing say about me, you little brick?"
+#  - name: WinRM - Xerxes
+#    check_name: winrmCheck
+#    host: 10.2.0.6
+#    port: 5985
+#    points: 150
+#    accounts:
+#    - username: martha
+#      password: "rockyou.txt-SUCKS!"
+#    - username: jeff
+#      password: "rockyou.txt-SUCKS!"
+#    environments:
+#    - matching_content: "CHECKINFLAG"
+#      properties:
+#      - name: commands
+#        value: echo CHECKINFLAG
+  - name: OpenVPN - Ashoka
     check_name: OpenVPNCheck
     host: 10.2.0.7
     port: 1194
@@ -471,7 +505,7 @@ teams:
   - username: team1user1
     password: testpass1
   services:
-  - name: AD
+  - name: AD - Alexander
     check_name: LDAPCheck
     host: 10.2.1.1
     port: 389
@@ -488,7 +522,7 @@ teams:
         value: "team1.ists.io"
       - name: base_dn
         value: "dc=team1,dc=ists,dc=io"
-  - name: DNS
+  - name: DNS - Alexander
     check_name: DNSCheck
     host: 10.2.1.1
     port: 53
@@ -518,7 +552,7 @@ teams:
         value: NS
       - name: domain
         value: "team1.ists.io"
-#  - name: WinRM
+#  - name: WinRM - Alexander
 #    check_name: winrmCheck
 #    host: 10.2.1.1
 #    port: 5985
@@ -533,7 +567,7 @@ teams:
 #      properties:
 #      - name: commands
 #        value: echo CHECKINFLAG
-  - name: SMB
+  - name: SMB - Julius
     check_name: SMBCheck
     host: 10.2.1.2
     port: 445
@@ -555,7 +589,7 @@ teams:
       # SHA256 hash of file
       - name: hash
         value: 3ac8347c1130bd1ffe9078f99be6cb690baedd9e5552de0f7140c0daded7e1fa
-  - name: FTP
+  - name: FTP - Julius
     check_name: FTPCheck
     host: 10.2.1.2
     port: 21
@@ -587,7 +621,7 @@ teams:
 #      properties:
 #      - name: commands
 #        value: echo Spaceminersareprettylame
-  - name: Docker API
+  - name: Docker API - Churchhill
     check_name: DockerAPICheck
     host: 10.2.1.3
     port: 2375
@@ -711,7 +745,41 @@ teams:
       properties:
       - name: commands
         value: ps
-  - name: OpenVPN
+  - name: SMTP - Xerxes
+    check_name: SMTPCheck
+    host: 10.2.1.6
+    port: 25
+    points: 100
+    accounts:
+    - username: jeff@mail.team1.ists.io
+      password: "rockyou.txt-SUCKS!"
+    environments:
+    - matching_content: Successfully sent email
+      properties:
+      # TODO: This domain might not be correct. I cant find where the ansible is installing it
+      # but whiteteam said to use this for mail
+      - name: touser
+        value: jeff@mail.team1.ists.io
+      - name: subject
+        value: "Edgar Poe! Open up. This is the secret police"
+      - name: body
+        value: "What the jellyfish did you just jellyfishing say about me, you little brick?"
+#  - name: WinRM - Xerxes
+#    check_name: winrmCheck
+#    host: 10.2.1.6
+#    port: 5985
+#    points: 150
+#    accounts:
+#    - username: martha
+#      password: "rockyou.txt-SUCKS!"
+#    - username: jeff
+#      password: "rockyou.txt-SUCKS!"
+#    environments:
+#    - matching_content: "CHECKINFLAG"
+#      properties:
+#      - name: commands
+#        value: echo CHECKINFLAG
+  - name: OpenVPN - Ashoka
     check_name: OpenVPNCheck
     host: 10.2.1.7
     port: 1194

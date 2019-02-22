@@ -8,7 +8,7 @@ checks = [
     "Churchhill",
     "Leonidas",
     "Attila",
-    #"Xerxes",
+    "Xerxes",
     "Ashoka",
     # Cloud net
     "Gandhi",
