@@ -4,9 +4,9 @@
     port: 389
     points: 50
     accounts:
-    - username: martha
+    - username: Martha
       password: "rockyou.txt-SUCKS!"
-    - username: jeff
+    - username: Jeff
       password: "rockyou.txt-SUCKS!"
     environments:
     - matching_content: "^result: 0 Success"
@@ -26,19 +26,20 @@
       - name: qtype
         value: A
       - name: domain
-        value: attila.team$TEAM.ists.io
+        #value: attila.team$TEAM.ists.io
+        value: team$TEAM.ists.io
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: MX
+      - name: domain
+        value: team$TEAM.ists.io
     - matching_content: 'status: NOERROR'
       properties:
       - name: qtype
         value: A
       - name: domain
-        value: leonidas.team$TEAM.ists.io
-    - matching_content: 'status: NOERROR'
-      properties:
-      - name: qtype
-        value: A
-      - name: domain
-        value: bismark.team$TEAM.ists.io
+        value: alexander.team$TEAM.ists.io
     - matching_content: 'status: NOERROR'
       properties:
       - name: qtype

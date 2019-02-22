@@ -4,8 +4,7 @@
     port: 80
     points: 100
     environments:
-    # TODO: Whats the string we are looking for here?
-    - matching_content: Just link your credit card, specify the amount, and our country will be better because of
+    - matching_content: HTTP/1.1 301 Moved Permanently
       properties:
       - name: useragent
         value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
@@ -13,7 +12,7 @@
         value: 10.2.$TEAM.4
       - name: uri
         value: "/"
-    - matching_content: Just link your credit card, specify the amount, and our country will be better because of
+    - matching_content: HTTP/1.1 301 Moved Permanently
       properties:
       - name: useragent
         value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
