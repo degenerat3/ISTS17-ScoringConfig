@@ -1,10 +1,22 @@
 # Turn all those pesky configs into a massive giant config
 import yaml
 
-#checks = ["Alexander", "Julius", "Churchhill", "Leonidas", "Attila", "Xerxes", "Ashoka",
-          #"Gandhi", "Bonaparte", "Ataturk"]
+checks = [
+    # Local net
+    "Alexander",
+    "Julius",
+    "Churchhill",
+    "Leonidas",
+    "Attila",
+    #"Xerxes",
+    "Ashoka",
+    # Cloud net
+    "Gandhi",
+    "Bonaparte",
+    "Ataturk"
+    ]
 
-checks = ["Alexander", "Ashoka", "ataturk", "attila", "bonaparte", "churchhill", "gandhi", "julius"]
+#checks = ["Alexander", "Ashoka", "ataturk", "attila", "bonaparte", "churchhill", "gandhi", "julius", "leonidas"]
 
 def build_team(team):
     """Build a team for the given team number
