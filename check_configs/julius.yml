@@ -1,4 +1,4 @@
-  - name: SMB - Julius
+  - name: SMB
     check_name: SMBCheck
     host: 10.2.$TEAM.2
     port: 445
@@ -20,7 +20,7 @@
       # SHA256 hash of file
       - name: hash
         value: 3ac8347c1130bd1ffe9078f99be6cb690baedd9e5552de0f7140c0daded7e1fa
-  - name: FTP - Julius
+  - name: FTP
     check_name: FTPCheck
     host: 10.2.$TEAM.2
     port: 21
@@ -37,18 +37,18 @@
         value: "means_of_production.txt"
       - name: filecontents
         value: "seize me"
-  - name: WinRM - Julius
-    check_name: winrmCheck
-    host: 10.2.$TEAM.2
-    port: 5985
-    points: 150
-    accounts:
-    - username: martha
-      password: "rockyou.txt-SUCKS!"
-    - username: jeff
-      password: "rockyou.txt-SUCKS!"
-    environments:
-    - matching_content: "Spaceminersareprettylame"
-      properties:
-      - name: commands
-        value: echo Spaceminersareprettylame
+#  - name: WinRM - Julius
+#    check_name: winrmCheck
+#    host: 10.2.$TEAM.2
+#    port: 5985
+#    points: 150
+#    accounts:
+#    - username: martha
+#      password: "rockyou.txt-SUCKS!"
+#    - username: jeff
+#      password: "rockyou.txt-SUCKS!"
+#    environments:
+#    - matching_content: "Spaceminersareprettylame"
+#      properties:
+#      - name: commands
+#        value: echo Spaceminersareprettylame

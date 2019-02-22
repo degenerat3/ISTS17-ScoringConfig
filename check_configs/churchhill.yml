@@ -1,4 +1,4 @@
-  - name: Docker API - Churchhill
+  - name: Docker API
     check_name: DockerAPICheck
     host: 10.2.$TEAM.3
     port: 2375

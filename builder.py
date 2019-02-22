@@ -4,7 +4,7 @@ import yaml
 #checks = ["Alexander", "Julius", "Churchhill", "Leonidas", "Attila", "Xerxes", "Ashoka",
           #"Gandhi", "Bonaparte", "Ataturk"]
 
-checks = ["Alexander", "Ashoka", "ataturk"]
+checks = ["Alexander", "Ashoka", "ataturk", "attila", "bonaparte", "churchhill", "gandhi", "julius"]
 
 def build_team(team):
     """Build a team for the given team number
@@ -39,6 +39,6 @@ def build_all():
 if __name__ == "__main__":
     #TEAM_LOW = 0
 #    TEAM_HIGH = 13
-    TEAM_LOW = 1
-    TEAM_HIGH = 2
+    TEAM_LOW = 0
+    TEAM_HIGH = 1
     build_all()
