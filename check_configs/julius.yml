@@ -34,9 +34,9 @@
     - matching_content: "^SUCCESS"
       properties:
       - name: remotefilepath
-        value: "/ftp_files/testfile.txt"
+        value: "means_of_production.txt"
       - name: filecontents
-        value: Sample file contents
+        value: "seize me"
   - name: WinRM - Julius
     check_name: winrmCheck
     host: 10.2.$TEAM.2
@@ -48,7 +48,7 @@
     - username: jeff
       password: rockyou.txt-SUCKS!
     environments:
-    - matching_content: "CHECKINFLAG"
+    - matching_content: "Spaceminersareprettylame"
       properties:
       - name: commands
-        value: echo CHECKINFLAG
+        value: echo Spaceminersareprettylame
