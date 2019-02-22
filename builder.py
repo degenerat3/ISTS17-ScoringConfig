@@ -2,7 +2,7 @@
 import yaml
 
 TEAM_LOW = 0
-TEAM_HIGH = 13
+TEAM_HIGH = 0
 
 checks = [
     # Local net

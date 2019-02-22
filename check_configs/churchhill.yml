@@ -1,7 +1,7 @@
   - name: Docker API - Churchhill
     check_name: DockerAPICheck
     host: 10.2.$TEAM.3
-    port: 2375
+    port: 2376
     points: 100
     environments:
     - matching_content: SUCCESS
