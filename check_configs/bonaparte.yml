@@ -6,7 +6,7 @@
     points: 100
     environments:
     # TODO: What are we checking for here?
-    - matching_content: words can go here
+    - matching_content: "background-color:#0072C6;"
       properties:
       - name: useragent
         value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
@@ -14,7 +14,7 @@
         value: 10.3.$TEAM.2
       - name: uri
         value: "/"
-    - matching_content: words can go here
+    - matching_content: "background-color:#0072C6;"
       properties:
       - name: useragent
         value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
@@ -28,7 +28,7 @@
     port: 443
     points: 100
     environments:
-    - matching_content: words can go here
+    - matching_content: "background-color:#0072C6;"
       properties:
       - name: useragent
         value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
@@ -36,7 +36,7 @@
         value: 10.3.$TEAM.2
       - name: uri
         value: "/"
-    - matching_content: words can go here
+    - matching_content: "background-color:#0072C6;"
       properties:
       - name: useragent
         value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
