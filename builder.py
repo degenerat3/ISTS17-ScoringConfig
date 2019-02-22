@@ -1,6 +1,9 @@
 # Turn all those pesky configs into a massive giant config
 import yaml
 
+TEAM_LOW = 0
+TEAM_HIGH = 13
+
 checks = [
     # Local net
     "Alexander",
@@ -49,8 +52,4 @@ def build_all():
     print("Config written to competition.yml")
 
 if __name__ == "__main__":
-    #TEAM_LOW = 0
-#    TEAM_HIGH = 13
-    TEAM_LOW = 0
-    TEAM_HIGH = 1
     build_all()
