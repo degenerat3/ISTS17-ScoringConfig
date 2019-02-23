@@ -1,7 +1,9 @@
 # Turn all those pesky configs into a massive giant config
+import random
+import string
 
-TEAM_LOW = 0
-TEAM_HIGH = 0
+TEAM_LOW = 1
+TEAM_HIGH = 13
 
 checks = [
     # Local net
@@ -18,6 +20,23 @@ checks = [
     "Ataturk"
     ]
 
+team_passwords = [
+    "team0-0000",
+    "team1-DBKW",
+    "team2-ZX5T",
+    "team3-PB5J",
+    "team4-OL1T",
+    "team5-BUFV",
+    "team6-503C",
+    "team7-XJ91",
+    "team8-A45T",
+    "team9-XI0L",
+    "team10-4Y5A",
+    "team11-4LIQ",
+    "team12-5QPE",
+    "team13-GTPI"
+]
+
 def build_team(team):
     """Build a team for the given team number
     """
@@ -25,7 +44,9 @@ def build_team(team):
     with open("base_team.yml") as inf:
         data = inf.read().rstrip()
         output = data.replace("$TEAM", str(team)) # Change the team number
+        output = output.replace("$PASSWORD", team_passwords[team])
         output += "\n"
+
     for check in checks:
         check = check.lower()+".yml"
         with open("check_configs/"+check) as inf:

@@ -4,9 +4,9 @@ teams:
   color: White
   users:
   - username: whiteteamuser
-    password: testpass
+    password: democracy-beans-1337
 - name: RedTeam
   color: Red
   users:
   - username: redteamuser
-    password: testpass
+    password: redteamlovesyou

@@ -1,20 +1,10 @@
-  - name: OpenVPN - Ashoka
-    check_name: OpenVPNCheck
+  - name: ICMP - Ashoka
+    check_name: ICMPCheck
     host: 10.2.$TEAM.7
-    port: 1194
-    points: 100
-    accounts:
-    - username: jeff
-      password: "rockyou.txt-SUCKS!"
-    - username: martha
-      password: "rockyou.txt-SUCKS!"
+    port: 0
+    points: 25
     environments:
-    - matching_content: "^SUCCESS"
-      properties: 
-      - name: ca
-        # I'm so sorry, openvpn needs the ca cert for login via the client
-        # TODO: We need to pull this and replace it for every teams machine :(
-        value: MIIDSzCCAjOgAwIBAgIUNf7YivHK0rWciIy1HsNNx/tGDt4wDQYJKoZIhvcNAQ
+    - matching_content: 1 packets transmitted, 1 received
   - name: "SSH - Ashoka"
     check_name: SSHCheck
     host: 10.2.$TEAM.7
