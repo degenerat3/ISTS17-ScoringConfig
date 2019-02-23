@@ -352,7 +352,7 @@ teams:
     port: 10000
     points: 100
     environments:
-    - matching_content: html[data-background-style="gainsboro"]
+    - matching_content: gainsboro
       properties:
       - name: useragent
         value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
@@ -360,7 +360,7 @@ teams:
         value: 10.3.1.1
       - name: uri
         value: "/"
-    - matching_content: html[data-background-style="gainsboro"]
+    - matching_content: gainsboro
       properties:
       - name: useragent
         value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
@@ -394,8 +394,7 @@ teams:
     port: 80
     points: 100
     environments:
-    # TODO: What are we checking for here?
-    - matching_content: "background-color:#0072C6;"
+    - matching_content: "background-color: linen;"
       properties:
       - name: useragent
         value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
@@ -403,7 +402,7 @@ teams:
         value: 10.3.1.2
       - name: uri
         value: "/"
-    - matching_content: "background-color:#0072C6;"
+    - matching_content: "background-color: linen;"
       properties:
       - name: useragent
         value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
@@ -831,7 +830,7 @@ teams:
     port: 10000
     points: 100
     environments:
-    - matching_content: html[data-background-style="gainsboro"]
+    - matching_content: gainsboro
       properties:
       - name: useragent
         value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
@@ -839,7 +838,7 @@ teams:
         value: 10.3.2.1
       - name: uri
         value: "/"
-    - matching_content: html[data-background-style="gainsboro"]
+    - matching_content: gainsboro
       properties:
       - name: useragent
         value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
@@ -873,8 +872,7 @@ teams:
     port: 80
     points: 100
     environments:
-    # TODO: What are we checking for here?
-    - matching_content: "background-color:#0072C6;"
+    - matching_content: "background-color: linen;"
       properties:
       - name: useragent
         value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
@@ -882,7 +880,7 @@ teams:
         value: 10.3.2.2
       - name: uri
         value: "/"
-    - matching_content: "background-color:#0072C6;"
+    - matching_content: "background-color: linen;"
       properties:
       - name: useragent
         value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
@@ -1310,7 +1308,7 @@ teams:
     port: 10000
     points: 100
     environments:
-    - matching_content: html[data-background-style="gainsboro"]
+    - matching_content: gainsboro
       properties:
       - name: useragent
         value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
@@ -1318,7 +1316,7 @@ teams:
         value: 10.3.3.1
       - name: uri
         value: "/"
-    - matching_content: html[data-background-style="gainsboro"]
+    - matching_content: gainsboro
       properties:
       - name: useragent
         value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
@@ -1352,8 +1350,7 @@ teams:
     port: 80
     points: 100
     environments:
-    # TODO: What are we checking for here?
-    - matching_content: "background-color:#0072C6;"
+    - matching_content: "background-color: linen;"
       properties:
       - name: useragent
         value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
@@ -1361,7 +1358,7 @@ teams:
         value: 10.3.3.2
       - name: uri
         value: "/"
-    - matching_content: "background-color:#0072C6;"
+    - matching_content: "background-color: linen;"
       properties:
       - name: useragent
         value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
@@ -1789,7 +1786,7 @@ teams:
     port: 10000
     points: 100
     environments:
-    - matching_content: html[data-background-style="gainsboro"]
+    - matching_content: gainsboro
       properties:
       - name: useragent
         value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
@@ -1797,7 +1794,7 @@ teams:
         value: 10.3.4.1
       - name: uri
         value: "/"
-    - matching_content: html[data-background-style="gainsboro"]
+    - matching_content: gainsboro
       properties:
       - name: useragent
         value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
@@ -1831,8 +1828,7 @@ teams:
     port: 80
     points: 100
     environments:
-    # TODO: What are we checking for here?
-    - matching_content: "background-color:#0072C6;"
+    - matching_content: "background-color: linen;"
       properties:
       - name: useragent
         value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
@@ -1840,7 +1836,7 @@ teams:
         value: 10.3.4.2
       - name: uri
         value: "/"
-    - matching_content: "background-color:#0072C6;"
+    - matching_content: "background-color: linen;"
       properties:
       - name: useragent
         value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
@@ -2268,7 +2264,7 @@ teams:
     port: 10000
     points: 100
     environments:
-    - matching_content: html[data-background-style="gainsboro"]
+    - matching_content: gainsboro
       properties:
       - name: useragent
         value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
@@ -2276,7 +2272,7 @@ teams:
         value: 10.3.5.1
       - name: uri
         value: "/"
-    - matching_content: html[data-background-style="gainsboro"]
+    - matching_content: gainsboro
       properties:
       - name: useragent
         value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
@@ -2310,8 +2306,7 @@ teams:
     port: 80
     points: 100
     environments:
-    # TODO: What are we checking for here?
-    - matching_content: "background-color:#0072C6;"
+    - matching_content: "background-color: linen;"
       properties:
       - name: useragent
         value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
@@ -2319,7 +2314,7 @@ teams:
         value: 10.3.5.2
       - name: uri
         value: "/"
-    - matching_content: "background-color:#0072C6;"
+    - matching_content: "background-color: linen;"
       properties:
       - name: useragent
         value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
@@ -2747,7 +2742,7 @@ teams:
     port: 10000
     points: 100
     environments:
-    - matching_content: html[data-background-style="gainsboro"]
+    - matching_content: gainsboro
       properties:
       - name: useragent
         value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
@@ -2755,7 +2750,7 @@ teams:
         value: 10.3.6.1
       - name: uri
         value: "/"
-    - matching_content: html[data-background-style="gainsboro"]
+    - matching_content: gainsboro
       properties:
       - name: useragent
         value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
@@ -2789,8 +2784,7 @@ teams:
     port: 80
     points: 100
     environments:
-    # TODO: What are we checking for here?
-    - matching_content: "background-color:#0072C6;"
+    - matching_content: "background-color: linen;"
       properties:
       - name: useragent
         value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
@@ -2798,7 +2792,7 @@ teams:
         value: 10.3.6.2
       - name: uri
         value: "/"
-    - matching_content: "background-color:#0072C6;"
+    - matching_content: "background-color: linen;"
       properties:
       - name: useragent
         value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
@@ -3226,7 +3220,7 @@ teams:
     port: 10000
     points: 100
     environments:
-    - matching_content: html[data-background-style="gainsboro"]
+    - matching_content: gainsboro
       properties:
       - name: useragent
         value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
@@ -3234,7 +3228,7 @@ teams:
         value: 10.3.7.1
       - name: uri
         value: "/"
-    - matching_content: html[data-background-style="gainsboro"]
+    - matching_content: gainsboro
       properties:
       - name: useragent
         value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
@@ -3268,8 +3262,7 @@ teams:
     port: 80
     points: 100
     environments:
-    # TODO: What are we checking for here?
-    - matching_content: "background-color:#0072C6;"
+    - matching_content: "background-color: linen;"
       properties:
       - name: useragent
         value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
@@ -3277,7 +3270,7 @@ teams:
         value: 10.3.7.2
       - name: uri
         value: "/"
-    - matching_content: "background-color:#0072C6;"
+    - matching_content: "background-color: linen;"
       properties:
       - name: useragent
         value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
@@ -3705,7 +3698,7 @@ teams:
     port: 10000
     points: 100
     environments:
-    - matching_content: html[data-background-style="gainsboro"]
+    - matching_content: gainsboro
       properties:
       - name: useragent
         value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
@@ -3713,7 +3706,7 @@ teams:
         value: 10.3.8.1
       - name: uri
         value: "/"
-    - matching_content: html[data-background-style="gainsboro"]
+    - matching_content: gainsboro
       properties:
       - name: useragent
         value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
@@ -3747,8 +3740,7 @@ teams:
     port: 80
     points: 100
     environments:
-    # TODO: What are we checking for here?
-    - matching_content: "background-color:#0072C6;"
+    - matching_content: "background-color: linen;"
       properties:
       - name: useragent
         value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
@@ -3756,7 +3748,7 @@ teams:
         value: 10.3.8.2
       - name: uri
         value: "/"
-    - matching_content: "background-color:#0072C6;"
+    - matching_content: "background-color: linen;"
       properties:
       - name: useragent
         value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
@@ -4184,7 +4176,7 @@ teams:
     port: 10000
     points: 100
     environments:
-    - matching_content: html[data-background-style="gainsboro"]
+    - matching_content: gainsboro
       properties:
       - name: useragent
         value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
@@ -4192,7 +4184,7 @@ teams:
         value: 10.3.9.1
       - name: uri
         value: "/"
-    - matching_content: html[data-background-style="gainsboro"]
+    - matching_content: gainsboro
       properties:
       - name: useragent
         value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
@@ -4226,8 +4218,7 @@ teams:
     port: 80
     points: 100
     environments:
-    # TODO: What are we checking for here?
-    - matching_content: "background-color:#0072C6;"
+    - matching_content: "background-color: linen;"
       properties:
       - name: useragent
         value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
@@ -4235,7 +4226,7 @@ teams:
         value: 10.3.9.2
       - name: uri
         value: "/"
-    - matching_content: "background-color:#0072C6;"
+    - matching_content: "background-color: linen;"
       properties:
       - name: useragent
         value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
@@ -4663,7 +4654,7 @@ teams:
     port: 10000
     points: 100
     environments:
-    - matching_content: html[data-background-style="gainsboro"]
+    - matching_content: gainsboro
       properties:
       - name: useragent
         value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
@@ -4671,7 +4662,7 @@ teams:
         value: 10.3.10.1
       - name: uri
         value: "/"
-    - matching_content: html[data-background-style="gainsboro"]
+    - matching_content: gainsboro
       properties:
       - name: useragent
         value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
@@ -4705,8 +4696,7 @@ teams:
     port: 80
     points: 100
     environments:
-    # TODO: What are we checking for here?
-    - matching_content: "background-color:#0072C6;"
+    - matching_content: "background-color: linen;"
       properties:
       - name: useragent
         value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
@@ -4714,7 +4704,7 @@ teams:
         value: 10.3.10.2
       - name: uri
         value: "/"
-    - matching_content: "background-color:#0072C6;"
+    - matching_content: "background-color: linen;"
       properties:
       - name: useragent
         value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
@@ -5142,7 +5132,7 @@ teams:
     port: 10000
     points: 100
     environments:
-    - matching_content: html[data-background-style="gainsboro"]
+    - matching_content: gainsboro
       properties:
       - name: useragent
         value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
@@ -5150,7 +5140,7 @@ teams:
         value: 10.3.11.1
       - name: uri
         value: "/"
-    - matching_content: html[data-background-style="gainsboro"]
+    - matching_content: gainsboro
       properties:
       - name: useragent
         value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
@@ -5184,8 +5174,7 @@ teams:
     port: 80
     points: 100
     environments:
-    # TODO: What are we checking for here?
-    - matching_content: "background-color:#0072C6;"
+    - matching_content: "background-color: linen;"
       properties:
       - name: useragent
         value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
@@ -5193,7 +5182,7 @@ teams:
         value: 10.3.11.2
       - name: uri
         value: "/"
-    - matching_content: "background-color:#0072C6;"
+    - matching_content: "background-color: linen;"
       properties:
       - name: useragent
         value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
@@ -5621,7 +5610,7 @@ teams:
     port: 10000
     points: 100
     environments:
-    - matching_content: html[data-background-style="gainsboro"]
+    - matching_content: gainsboro
       properties:
       - name: useragent
         value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
@@ -5629,7 +5618,7 @@ teams:
         value: 10.3.12.1
       - name: uri
         value: "/"
-    - matching_content: html[data-background-style="gainsboro"]
+    - matching_content: gainsboro
       properties:
       - name: useragent
         value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
@@ -5663,8 +5652,7 @@ teams:
     port: 80
     points: 100
     environments:
-    # TODO: What are we checking for here?
-    - matching_content: "background-color:#0072C6;"
+    - matching_content: "background-color: linen;"
       properties:
       - name: useragent
         value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
@@ -5672,7 +5660,7 @@ teams:
         value: 10.3.12.2
       - name: uri
         value: "/"
-    - matching_content: "background-color:#0072C6;"
+    - matching_content: "background-color: linen;"
       properties:
       - name: useragent
         value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
@@ -6100,7 +6088,7 @@ teams:
     port: 10000
     points: 100
     environments:
-    - matching_content: html[data-background-style="gainsboro"]
+    - matching_content: gainsboro
       properties:
       - name: useragent
         value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
@@ -6108,7 +6096,7 @@ teams:
         value: 10.3.13.1
       - name: uri
         value: "/"
-    - matching_content: html[data-background-style="gainsboro"]
+    - matching_content: gainsboro
       properties:
       - name: useragent
         value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
@@ -6142,8 +6130,7 @@ teams:
     port: 80
     points: 100
     environments:
-    # TODO: What are we checking for here?
-    - matching_content: "background-color:#0072C6;"
+    - matching_content: "background-color: linen;"
       properties:
       - name: useragent
         value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
@@ -6151,7 +6138,7 @@ teams:
         value: 10.3.13.2
       - name: uri
         value: "/"
-    - matching_content: "background-color:#0072C6;"
+    - matching_content: "background-color: linen;"
       properties:
       - name: useragent
         value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
