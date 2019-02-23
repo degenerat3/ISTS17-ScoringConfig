@@ -9,7 +9,7 @@
     - username: Jeff
       password: "rockyou.txt-SUCKS!"
     environments:
-    - matching_content: "^result: 0 Success"
+    - matching_content: "result: 0 Success"
       properties:
       - name: domain
         value: "team$TEAM.ists.io"
