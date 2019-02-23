@@ -46,18 +46,18 @@
         value: NS
       - name: domain
         value: "team$TEAM.ists.io"
-  - name: WinRM - Alexander
-    check_name: winrmCheck
-    host: 10.2.$TEAM.1
-    port: 5985
-    points: 150
-    accounts:
-    - username: martha
-      password: "rockyou.txt-SUCKS!"
-    - username: jeff
-      password: "rockyou.txt-SUCKS!"
-    environments:
-    - matching_content: "Spaceminersareprettylame"
-      properties:
-      - name: commands
-        value: echo Spaceminersareprettylame
+# - name: WinRM - Alexander
+#    check_name: winrmCheck
+#    host: 10.2.$TEAM.1
+#    port: 5985
+#    points: 150
+#    accounts:
+#    - username: martha
+#      password: "rockyou.txt-SUCKS!"
+#    - username: jeff
+#      password: "rockyou.txt-SUCKS!"
+#    environments:
+#    - matching_content: "Spaceminersareprettylame"
+#      properties:
+#      - name: commands
+#        value: echo Spaceminersareprettylame

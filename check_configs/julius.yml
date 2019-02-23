@@ -37,18 +37,18 @@
         value: "means_of_production.txt"
       - name: filecontents
         value: "seize me"
-  - name: WinRM - Julius
-    check_name: winrmCheck
-    host: 10.2.$TEAM.2
-    port: 5985
-    points: 150
-    accounts:
-    - username: martha
-      password: "rockyou.txt-SUCKS!"
-    - username: jeff
-      password: "rockyou.txt-SUCKS!"
-    environments:
-    - matching_content: "Spaceminersareprettylame"
-      properties:
-      - name: commands
-        value: echo Spaceminersareprettylame
+#  - name: WinRM - Julius
+#    check_name: winrmCheck
+#    host: 10.2.$TEAM.2
+#    port: 5985
+#    points: 150
+#    accounts:
+#    - username: martha
+#      password: "rockyou.txt-SUCKS!"
+#    - username: jeff
+#      password: "rockyou.txt-SUCKS!"
+#    environments:
+#    - matching_content: "Spaceminersareprettylame"
+#      properties:
+#      - name: commands
+#        value: echo Spaceminersareprettylame
