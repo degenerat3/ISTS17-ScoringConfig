@@ -262,7 +262,7 @@ teams:
     port: 25
     points: 100
     accounts:
-    - username: jeff@mail.team0.ists.io
+    - username: jeff@team0.ists.io
       password: "rockyou.txt-SUCKS!"
     environments:
     - matching_content: Successfully sent email
@@ -270,7 +270,7 @@ teams:
       # TODO: This domain might not be correct. I cant find where the ansible is installing it
       # but whiteteam said to use this for mail
       - name: touser
-        value: jeff@mail.team0.ists.io
+        value: jeff@team0.ists.io
       - name: subject
         value: "Edgar Poe! Open up. This is the secret police"
       - name: body
