@@ -1,5 +1,4 @@
 # Turn all those pesky configs into a massive giant config
-import yaml
 
 TEAM_LOW = 0
 TEAM_HIGH = 0

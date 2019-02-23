@@ -27,7 +27,7 @@ teams:
     - username: Jeff
       password: "rockyou.txt-SUCKS!"
     environments:
-    - matching_content: "^result: 0 Success"
+    - matching_content: "result: 0 Success"
       properties:
       - name: domain
         value: "team0.ists.io"
@@ -64,21 +64,21 @@ teams:
         value: NS
       - name: domain
         value: "team0.ists.io"
-  - name: WinRM - Alexander
-    check_name: winrmCheck
-    host: 10.2.0.1
-    port: 5985
-    points: 150
-    accounts:
-    - username: martha
-      password: "rockyou.txt-SUCKS!"
-    - username: jeff
-      password: "rockyou.txt-SUCKS!"
-    environments:
-    - matching_content: "Spaceminersareprettylame"
-      properties:
-      - name: commands
-        value: echo Spaceminersareprettylame
+# - name: WinRM - Alexander
+#    check_name: winrmCheck
+#    host: 10.2.0.1
+#    port: 5985
+#    points: 150
+#    accounts:
+#    - username: martha
+#      password: "rockyou.txt-SUCKS!"
+#    - username: jeff
+#      password: "rockyou.txt-SUCKS!"
+#    environments:
+#    - matching_content: "Spaceminersareprettylame"
+#      properties:
+#      - name: commands
+#        value: echo Spaceminersareprettylame
   - name: SMB - Julius
     check_name: SMBCheck
     host: 10.2.0.2
@@ -97,10 +97,10 @@ teams:
       - name: share
         value: meme_share
       - name: file
-        value: flag.txt
+        value: "7 - smo5eYv.jpg"
       # SHA256 hash of file
       - name: hash
-        value: 3ac8347c1130bd1ffe9078f99be6cb690baedd9e5552de0f7140c0daded7e1fa
+        value: 8a85b035a0564f67db8a7bb2852e426bec4608def318c160a88098da84054f1b
   - name: FTP - Julius
     check_name: FTPCheck
     host: 10.2.0.2
@@ -118,25 +118,25 @@ teams:
         value: "means_of_production.txt"
       - name: filecontents
         value: "seize me"
-  - name: WinRM - Julius
-    check_name: winrmCheck
-    host: 10.2.0.2
-    port: 5985
-    points: 150
-    accounts:
-    - username: martha
-      password: "rockyou.txt-SUCKS!"
-    - username: jeff
-      password: "rockyou.txt-SUCKS!"
-    environments:
-    - matching_content: "Spaceminersareprettylame"
-      properties:
-      - name: commands
-        value: echo Spaceminersareprettylame
+#  - name: WinRM - Julius
+#    check_name: winrmCheck
+#    host: 10.2.0.2
+#    port: 5985
+#    points: 150
+#    accounts:
+#    - username: martha
+#      password: "rockyou.txt-SUCKS!"
+#    - username: jeff
+#      password: "rockyou.txt-SUCKS!"
+#    environments:
+#    - matching_content: "Spaceminersareprettylame"
+#      properties:
+#      - name: commands
+#        value: echo Spaceminersareprettylame
   - name: Docker API - Churchhill
     check_name: DockerAPICheck
     host: 10.2.0.3
-    port: 2376
+    port: 2375
     points: 100
     environments:
     - matching_content: SUCCESS
@@ -275,21 +275,21 @@ teams:
         value: "Edgar Poe! Open up. This is the secret police"
       - name: body
         value: "What the jellyfish did you just jellyfishing say about me, you little brick?"
-  - name: WinRM - Xerxes
-    check_name: winrmCheck
-    host: 10.2.0.6
-    port: 5985
-    points: 150
-    accounts:
-    - username: martha
-      password: "rockyou.txt-SUCKS!"
-    - username: jeff
-      password: "rockyou.txt-SUCKS!"
-    environments:
-    - matching_content: "Spaceminersareprettylame"
-      properties:
-      - name: commands
-        value: echo Spaceminersareprettylame
+#  - name: WinRM - Xerxes
+#    check_name: winrmCheck
+#    host: 10.2.0.6
+#    port: 5985
+#    points: 150
+#    accounts:
+#    - username: martha
+#      password: "rockyou.txt-SUCKS!"
+#    - username: jeff
+#      password: "rockyou.txt-SUCKS!"
+#    environments:
+#    - matching_content: "Spaceminersareprettylame"
+#      properties:
+#      - name: commands
+#        value: echo Spaceminersareprettylame
   - name: OpenVPN - Ashoka
     check_name: OpenVPNCheck
     host: 10.2.0.7
@@ -443,21 +443,21 @@ teams:
         value: 10.3.0.2
       - name: uri
         value: "/"
-  - name: WinRM - Bonaparte
-    check_name: winrmCheck
-    host: 10.3.0.2
-    port: 5985
-    points: 150
-    accounts:
-    - username: martha
-      password: "rockyou.txt-SUCKS!"
-    - username: jeff
-      password: "rockyou.txt-SUCKS!"
-    environments:
-    - matching_content: "Spaceminersareprettylame"
-      properties:
-      - name: commands
-        value: echo Spaceminersareprettylame
+#  - name: WinRM - Bonaparte
+#    check_name: winrmCheck
+#    host: 10.3.0.2
+#    port: 5985
+#    points: 150
+#    accounts:
+#    - username: martha
+#      password: "rockyou.txt-SUCKS!"
+#    - username: jeff
+#      password: "rockyou.txt-SUCKS!"
+#    environments:
+#    - matching_content: "Spaceminersareprettylame"
+#      properties:
+#      - name: commands
+#        value: echo Spaceminersareprettylame
   - name: HTTPS - Ataturk
     check_name: HTTPSCheck
     host: 10.3.0.3
