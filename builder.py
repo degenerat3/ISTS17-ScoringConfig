@@ -7,17 +7,18 @@ TEAM_HIGH = 2
 
 checks = [
     # Local net
-    "Alexander",
-    "Julius",
-    "Churchhill",
-    "Leonidas",
-    "Attila",
-    "Xerxes",
-    "Ashoka",
+    "sharkeal_oneal",
+    "sharkbait",
+    "sharkwan",
+    "daddyshark",
+    "sharknado",
+    "bruce"
     # Cloud net
-    "Gandhi",
-    "Bonaparte",
-    "Ataturk"
+    "babyshark",
+    "mommyshark",
+    "sharkiesha",
+    "grandmashark",
+    "grampashark"
     ]
 
 team_passwords = [
