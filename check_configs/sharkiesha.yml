@@ -1,0 +1,33 @@
+  - name: HTTP - SHARKIESHA
+    check_name: HTTPCheck
+    host: 172.20.$TEAM.3
+    port: 80
+    points: 100
+    environments:
+    - matching_content: Suh dude
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 172.20.$TEAM.3
+      - name: uri
+        value: "/"
+  - name: SSH - SHARKIESHA
+    check_name: SSHCheck
+    host: 172.20.$TEAM.3
+    port: 22
+    points: 150
+    accounts:
+    - username: hoover
+      password: "QAZwsx123"
+    - username: dyson
+      password: "QAZwsx123"
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps

@@ -3,7 +3,7 @@ import random
 import string
 
 TEAM_LOW = 1
-TEAM_HIGH = 13
+TEAM_HIGH = 2
 
 checks = [
     # Local net
@@ -21,20 +21,9 @@ checks = [
     ]
 
 team_passwords = [
-    "team0-0000",
-    "team1-DBKW",
-    "team2-ZX5T",
-    "team3-PB5J",
-    "team4-OL1T",
-    "team5-BUFV",
-    "team6-503C",
-    "team7-XJ91",
-    "team8-A45T",
-    "team9-XI0L",
-    "team10-4Y5A",
-    "team11-4LIQ",
-    "team12-5QPE",
-    "team13-GTPI"
+    "team1-haha",
+    "team2-rofl",
+
 ]
 
 def build_team(team):

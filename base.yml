@@ -4,7 +4,7 @@ teams:
   color: White
   users:
   - username: whiteteamuser
-    password: democracy-beans-1337
+    password: letusin1
 - name: RedTeam
   color: Red
   users:

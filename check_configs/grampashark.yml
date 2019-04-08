@@ -1,0 +1,21 @@
+  - name: SSH - GRAMPASHARK
+    check_name: SSHCheck
+    host: 172.20.$TEAM.5
+    port: 22
+    points: 150
+    accounts:
+    - username: hoover
+      password: "QAZwsx123"
+    - username: dyson
+      password: "QAZwsx123"
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+
+# NEEDS MAIL
