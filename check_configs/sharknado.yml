@@ -1,0 +1,39 @@
+  - name: ICMP - SHARKNADO
+    check_name: ICMPCheck
+    host: 172.20.$TEAM.14
+    port: 0
+    points: 25
+    environments:
+    - matching_content: 1 packets transmitted, 1 received
+  - name: RDP - SHARKNADO
+    check_name: RDPCheck
+    host: 172.20.$TEAM.14
+    port: 3390
+    points: 100
+    accounts:
+    - username: Dyson
+      password: QAZwsx123
+    - username: Hoover
+      password: QAZwsx123
+    environments:
+    - matching_content: SUCCESS$
+  - name: SMB - SHARKNADO
+    check_name: SMBCheck
+    host: 172.20.$TEAM.14
+    port: 445
+    points: 100
+    accounts:
+    - username: Dyson
+      password: QAZwsx123
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: remote_name
+        value: COMPUTERNAME
+      - name: share
+        value: ScoredShare
+      - name: file
+        value: flag.txt
+      # SHA256 hash of file
+      - name: hash
+        value: 3ac8347c1130bd1ffe9078f99be6cb690baedd9e5552de0f7140c0daded7e1fa
