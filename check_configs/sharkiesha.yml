@@ -1,17 +1,3 @@
-  - name: HTTP - SHARKIESHA
-    check_name: HTTPCheck
-    host: 172.20.$TEAM.3
-    port: 80
-    points: 100
-    environments:
-    - matching_content: subscribe
-      properties:
-      - name: useragent
-        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
-      - name: vhost
-        value: 172.20.$TEAM.3
-      - name: uri
-        value: "/"
   - name: SSH - SHARKIESHA
     check_name: SSHCheck
     host: 172.20.$TEAM.3
@@ -31,3 +17,17 @@
       properties:
       - name: commands
         value: ps
+  - name: HTTP - SHARKIESHA
+    check_name: HTTPCheck
+    host: 172.20.$TEAM.3
+    port: 80
+    points: 100
+    environments:
+    - matching_content: subscribe
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: 172.20.$TEAM.3
+      - name: uri
+        value: "/"
