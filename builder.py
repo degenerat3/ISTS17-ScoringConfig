@@ -10,9 +10,9 @@ checks = [
     "sharkeal_oneal",
     "sharkbait",
     "sharkwan",
-    ##"daddyshark",
-    ##"sharknado",
-    ##"bruce"
+    "daddyshark",
+    "sharknado",
+    "bruce"
     # Cloud net
     "babyshark",
     "mommyshark",
