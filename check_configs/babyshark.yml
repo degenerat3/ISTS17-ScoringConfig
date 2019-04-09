@@ -17,7 +17,6 @@
       properties:
       - name: commands
         value: ps
-
   - name: MySQL - BABYSHARK
     check_name: MYSQLCheck
     host: 172.20.$TEAM.1
@@ -26,6 +25,7 @@
     accounts:
     - username: succ
       password: changeme
+    environments:
     - matching_content: USER_PRIVILEGES
       properties:
       - name: database
