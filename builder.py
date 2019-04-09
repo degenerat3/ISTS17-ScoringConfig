@@ -12,7 +12,7 @@ checks = [
     "sharkwan",
     "daddyshark",
     "sharknado",
-    "bruce"
+    "bruce",
     # Cloud net
     "babyshark",
     "mommyshark",
