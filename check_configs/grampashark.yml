@@ -17,5 +17,20 @@
       properties:
       - name: commands
         value: ps
-
-# NEEDS MAIL
+  - name: SMTP - GRAMPASHARK
+    check_name: SMTPCheck
+    host: 172.20.$TEAM.5
+    port: 25
+    points: 100
+    accounts:
+    - username: dyson@sharkwell.com
+      password: QAZwsx123
+    environments:
+    - matching_content: Successfully sent email
+      properties:
+      - name: touser
+        value: hoover@sharkwell.com
+      - name: subject
+        value: Check out this meme
+      - name: body
+        value: go look at reddit's deepfriedmemes
