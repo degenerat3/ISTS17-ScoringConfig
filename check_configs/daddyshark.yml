@@ -1,0 +1,36 @@
+  - name: ICMP - DADDYSHARK
+    check_name: ICMPCheck
+    host: 172.20.$TEAM.13
+    port: 0
+    points: 25
+    environments:
+    - matching_content: 1 packets transmitted, 1 received
+  - name: RDP - DADDYSHARK
+    check_name: RDPCheck
+    host: 172.20.$TEAM.13
+    port: 3390
+    points: 100
+    accounts:
+    - username: Dyson
+      password: QAZwsx123
+    - username: Hoover
+      password: QAZwsx123
+    environments:
+    - matching_content: SUCCESS$
+  - name: LDAP - DADDYSHARK
+    check_name: LDAPCheck
+    host: 172.20.$TEAM.13
+    port: 389
+    points: 50
+    accounts:
+    - username: Dyson
+      password: QAZwsx123
+    - username: Hoover
+      password: QAZwsx123
+    environments:
+    - matching_content: "^result: 0 Success"
+      properties:
+      - name: domain
+        value: sharkwell.com
+      - name: base_dn
+        value: dc=sharkwell,dc=com
