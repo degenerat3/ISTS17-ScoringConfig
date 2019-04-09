@@ -18,4 +18,17 @@
       - name: commands
         value: ps
 
-# NEEDS DB TOO
+  - name: MySQL - BABYSHARK
+    check_name: MYSQLCheck
+    host: 172.20.$TEAM.1
+    port: 3306
+    points: 100
+    accounts:
+    - username: succ
+      password: changeme
+    - matching_content: USER_PRIVILEGES
+      properties:
+      - name: database
+        value: information_schema
+      - name: command
+        value: show tables;
