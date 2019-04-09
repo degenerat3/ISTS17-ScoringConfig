@@ -10,9 +10,9 @@ checks = [
     "sharkeal_oneal",
     "sharkbait",
     "sharkwan",
-    #"daddyshark",
-    #"sharknado",
-    #"bruce"
+    ##"daddyshark",
+    ##"sharknado",
+    ##"bruce"
     # Cloud net
     "babyshark",
     "mommyshark",
@@ -34,7 +34,7 @@ def build_team(team):
     with open("base_team.yml") as inf:
         data = inf.read().rstrip()
         output = data.replace("$TEAM", str(team)) # Change the team number
-        output = output.replace("$PASSWORD", team_passwords[team])
+        output = output.replace("$PASSWORD", team_passwords[team-1])
         output += "\n"
 
     for check in checks:
