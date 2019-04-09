@@ -1,3 +1,10 @@
+  - name: ICMP - GRANDMASHARK
+    check_name: ICMPCheck
+    host: 172.20.$TEAM.4
+    port: 0
+    points: 25
+    environments:
+    - matching_content: 1 packets transmitted, 1 received
   - name: FTP - GRANDMASHARK
     check_name: FTPCheck
     host: 172.20.$TEAM.4
@@ -13,10 +20,3 @@
         value: "/ftp_files/testfile.txt"
       - name: filecontents
         value: Sample file contents
-  - name: ICMP - GRANDMASHARK
-    check_name: ICMPCheck
-    host: 172.20.$TEAM.4
-    port: 0
-    points: 25
-    environments:
-    - matching_content: 1 packets transmitted, 1 received
