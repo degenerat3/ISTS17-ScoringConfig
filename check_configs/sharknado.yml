@@ -29,11 +29,11 @@
     - matching_content: "^SUCCESS"
       properties:
       - name: remote_name
-        value: COMPUTERNAME
+        value: 172.20.$TEAM.14
       - name: share
-        value: ScoredShare
+        value: Share
       - name: file
-        value: flag.txt
+        value: scoring.txt
       # SHA256 hash of file
       - name: hash
-        value: 3ac8347c1130bd1ffe9078f99be6cb690baedd9e5552de0f7140c0daded7e1fa
+        value: 42e10254ea58d37447fe1f783b9a1018c80c4ebb28d80cd595d1faebfb680fdc

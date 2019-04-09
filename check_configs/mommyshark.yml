@@ -19,3 +19,23 @@
         value: 172.20.$TEAM.2
       - name: uri
         value: "/"
+  - name: SMB - MOMMYSHARK
+    check_name: SMBCheck
+    host: 172.20.$TEAM.2
+    port: 445
+    points: 100
+    accounts:
+    - username: Dyson
+      password: QAZwsx123
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: remote_name
+        value: 172.20.$TEAM.2
+      - name: share
+        value: Share
+      - name: file
+        value: scoring.txt
+      # SHA256 hash of file
+      - name: hash
+        value: 42e10254ea58d37447fe1f783b9a1018c80c4ebb28d80cd595d1faebfb680fdc
