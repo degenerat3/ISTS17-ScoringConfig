@@ -1,3 +1,10 @@
+  - name: ICMP - MOMMYSHARK
+    check_name: ICMPCheck
+    host: 172.20.$TEAM.2
+    port: 0
+    points: 25
+    environments:
+    - matching_content: 1 packets transmitted, 1 received
   - name: HTTP - MOMMYSHARK
     check_name: HTTPCheck
     host: 172.20.$TEAM.2
@@ -12,10 +19,3 @@
         value: 172.20.$TEAM.2
       - name: uri
         value: "/"
-  - name: ICMP - MOMMYSHARK
-    check_name: ICMPCheck
-    host: 172.20.$TEAM.2
-    port: 0
-    points: 25
-    environments:
-    - matching_content: 1 packets transmitted, 1 received
