@@ -8,12 +8,10 @@
   - name: RDP - DADDYSHARK
     check_name: RDPCheck
     host: 172.20.$TEAM.13
-    port: 3390
+    port: 3389
     points: 100
     accounts:
     - username: Dyson
-      password: QAZwsx123
-    - username: Hoover
       password: QAZwsx123
     environments:
     - matching_content: SUCCESS$
@@ -25,12 +23,10 @@
     accounts:
     - username: Dyson
       password: QAZwsx123
-    - username: Hoover
-      password: QAZwsx123
     environments:
-    - matching_content: "^result: 0 Success"
+    - matching_content: "result: 0 Success"
       properties:
       - name: domain
-        value: sharkwell.com
+        value: team$TEAM.local
       - name: base_dn
-        value: dc=sharkwell,dc=com
+        value: dc=team$TEAM,dc=local

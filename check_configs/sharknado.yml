@@ -8,7 +8,7 @@
   - name: RDP - SHARKNADO
     check_name: RDPCheck
     host: 172.20.$TEAM.14
-    port: 3390
+    port: 3389
     points: 100
     accounts:
     - username: Dyson
@@ -23,8 +23,8 @@
     port: 445
     points: 100
     accounts:
-    - username: Dyson
-      password: QAZwsx123
+    - username: grayteam
+      password: Letusin123
     environments:
     - matching_content: "^SUCCESS"
       properties:
