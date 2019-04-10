@@ -94,6 +94,134 @@ teams:
       properties:
       - name: commands
         value: ps
+  - name: ICMP - DADDYSHARK
+    check_name: ICMPCheck
+    host: 172.20.1.13
+    port: 0
+    points: 25
+    environments:
+    - matching_content: 1 packets transmitted, 1 received
+  - name: RDP - DADDYSHARK
+    check_name: RDPCheck
+    host: 172.20.1.13
+    port: 3389
+    points: 100
+    accounts:
+    - username: Dyson
+      password: QAZwsx123
+    environments:
+    - matching_content: SUCCESS$
+  - name: LDAP - DADDYSHARK
+    check_name: LDAPCheck
+    host: 172.20.1.13
+    port: 389
+    points: 50
+    accounts:
+    - username: Dyson
+      password: QAZwsx123
+    environments:
+    - matching_content: "result: 0 Success"
+      properties:
+      - name: domain
+        value: team1.local
+      - name: base_dn
+        value: dc=team1,dc=local
+  - name: DNS - DADDYSHARK
+    check_name: DNSCheck
+    host: 172.20.1.13
+    port: 53
+    points: 100
+    environments:
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: sharknado.team1.local
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: bruce.team1.local
+  - name: ICMP - SHARKNADO
+    check_name: ICMPCheck
+    host: 172.20.1.14
+    port: 0
+    points: 25
+    environments:
+    - matching_content: 1 packets transmitted, 1 received
+  - name: RDP - SHARKNADO
+    check_name: RDPCheck
+    host: 172.20.1.14
+    port: 3389
+    points: 100
+    accounts:
+    - username: Dyson
+      password: QAZwsx123
+    - username: Hoover
+      password: QAZwsx123
+    environments:
+    - matching_content: SUCCESS$
+  - name: SMB - SHARKNADO
+    check_name: SMBCheck
+    host: 172.20.1.14
+    port: 445
+    points: 100
+    accounts:
+    - username: grayteam
+      password: Letusin123
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: remote_name
+        value: 172.20.1.14
+      - name: share
+        value: Share
+      - name: file
+        value: scoring.txt
+      # SHA256 hash of file
+      - name: hash
+        value: 42e10254ea58d37447fe1f783b9a1018c80c4ebb28d80cd595d1faebfb680fdc
+  - name: ICMP - BRUCE
+    check_name: ICMPCheck
+    host: 172.20.1.15
+    port: 0
+    points: 25
+    environments:
+    - matching_content: 1 packets transmitted, 1 received
+  - name: RDP - BRUCE
+    check_name: RDPCheck
+    host: 172.20.1.15
+    port: 3389
+    points: 100
+    accounts:
+    - username: Dyson
+      password: QAZwsx123
+    - username: Hoover
+      password: QAZwsx123
+    environments:
+    - matching_content: SUCCESS$
+  - name: SMB - BRUCE
+    check_name: SMBCheck
+    host: 172.20.1.15
+    port: 445
+    points: 100
+    accounts:
+    - username: grayteam
+      password: Letusin123
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: remote_name
+        value: 172.20.1.15
+      - name: share
+        value: Share
+      - name: file
+        value: scoring.txt
+      # SHA256 hash of file
+      - name: hash
+        value: 42e10254ea58d37447fe1f783b9a1018c80c4ebb28d80cd595d1faebfb680fdc
   - name: "SSH - BABYSHARK"
     check_name: SSHCheck
     host: 172.20.1.1
@@ -141,7 +269,7 @@ teams:
     port: 80
     points: 100
     environments:
-    - matching_content: subscribe
+    - matching_content: Construction
       properties:
       - name: useragent
         value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
@@ -149,6 +277,26 @@ teams:
         value: 172.20.1.2
       - name: uri
         value: "/"
+  - name: SMB - MOMMYSHARK
+    check_name: SMBCheck
+    host: 172.20.1.2
+    port: 445
+    points: 100
+    accounts:
+    - username: grayteam
+      password: Letusin123
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: remote_name
+        value: 172.20.1.2
+      - name: share
+        value: Share
+      - name: file
+        value: scoring.txt
+      # SHA256 hash of file
+      - name: hash
+        value: 42e10254ea58d37447fe1f783b9a1018c80c4ebb28d80cd595d1faebfb680fdc
   - name: SSH - SHARKIESHA
     check_name: SSHCheck
     host: 172.20.1.3
@@ -182,28 +330,6 @@ teams:
         value: 172.20.1.3
       - name: uri
         value: "/"
-  - name: ICMP - GRANDMASHARK
-    check_name: ICMPCheck
-    host: 172.20.1.4
-    port: 0
-    points: 25
-    environments:
-    - matching_content: 1 packets transmitted, 1 received
-  - name: FTP - GRANDMASHARK
-    check_name: FTPCheck
-    host: 172.20.1.4
-    port: 21
-    points: 150
-    accounts:
-    - username: succ
-      password: changeme
-    environments:
-    - matching_content: "^SUCCESS"
-      properties:
-      - name: remotefilepath
-        value: "/ftp_files/testfile.txt"
-      - name: filecontents
-        value: Sample file contents
   - name: SSH - GRAMPASHARK
     check_name: SSHCheck
     host: 172.20.1.5
@@ -324,6 +450,134 @@ teams:
       properties:
       - name: commands
         value: ps
+  - name: ICMP - DADDYSHARK
+    check_name: ICMPCheck
+    host: 172.20.2.13
+    port: 0
+    points: 25
+    environments:
+    - matching_content: 1 packets transmitted, 1 received
+  - name: RDP - DADDYSHARK
+    check_name: RDPCheck
+    host: 172.20.2.13
+    port: 3389
+    points: 100
+    accounts:
+    - username: Dyson
+      password: QAZwsx123
+    environments:
+    - matching_content: SUCCESS$
+  - name: LDAP - DADDYSHARK
+    check_name: LDAPCheck
+    host: 172.20.2.13
+    port: 389
+    points: 50
+    accounts:
+    - username: Dyson
+      password: QAZwsx123
+    environments:
+    - matching_content: "result: 0 Success"
+      properties:
+      - name: domain
+        value: team2.local
+      - name: base_dn
+        value: dc=team2,dc=local
+  - name: DNS - DADDYSHARK
+    check_name: DNSCheck
+    host: 172.20.2.13
+    port: 53
+    points: 100
+    environments:
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: sharknado.team2.local
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: bruce.team2.local
+  - name: ICMP - SHARKNADO
+    check_name: ICMPCheck
+    host: 172.20.2.14
+    port: 0
+    points: 25
+    environments:
+    - matching_content: 1 packets transmitted, 1 received
+  - name: RDP - SHARKNADO
+    check_name: RDPCheck
+    host: 172.20.2.14
+    port: 3389
+    points: 100
+    accounts:
+    - username: Dyson
+      password: QAZwsx123
+    - username: Hoover
+      password: QAZwsx123
+    environments:
+    - matching_content: SUCCESS$
+  - name: SMB - SHARKNADO
+    check_name: SMBCheck
+    host: 172.20.2.14
+    port: 445
+    points: 100
+    accounts:
+    - username: grayteam
+      password: Letusin123
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: remote_name
+        value: 172.20.2.14
+      - name: share
+        value: Share
+      - name: file
+        value: scoring.txt
+      # SHA256 hash of file
+      - name: hash
+        value: 42e10254ea58d37447fe1f783b9a1018c80c4ebb28d80cd595d1faebfb680fdc
+  - name: ICMP - BRUCE
+    check_name: ICMPCheck
+    host: 172.20.2.15
+    port: 0
+    points: 25
+    environments:
+    - matching_content: 1 packets transmitted, 1 received
+  - name: RDP - BRUCE
+    check_name: RDPCheck
+    host: 172.20.2.15
+    port: 3389
+    points: 100
+    accounts:
+    - username: Dyson
+      password: QAZwsx123
+    - username: Hoover
+      password: QAZwsx123
+    environments:
+    - matching_content: SUCCESS$
+  - name: SMB - BRUCE
+    check_name: SMBCheck
+    host: 172.20.2.15
+    port: 445
+    points: 100
+    accounts:
+    - username: grayteam
+      password: Letusin123
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: remote_name
+        value: 172.20.2.15
+      - name: share
+        value: Share
+      - name: file
+        value: scoring.txt
+      # SHA256 hash of file
+      - name: hash
+        value: 42e10254ea58d37447fe1f783b9a1018c80c4ebb28d80cd595d1faebfb680fdc
   - name: "SSH - BABYSHARK"
     check_name: SSHCheck
     host: 172.20.2.1
@@ -371,7 +625,7 @@ teams:
     port: 80
     points: 100
     environments:
-    - matching_content: subscribe
+    - matching_content: Construction
       properties:
       - name: useragent
         value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
@@ -379,6 +633,26 @@ teams:
         value: 172.20.2.2
       - name: uri
         value: "/"
+  - name: SMB - MOMMYSHARK
+    check_name: SMBCheck
+    host: 172.20.2.2
+    port: 445
+    points: 100
+    accounts:
+    - username: grayteam
+      password: Letusin123
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: remote_name
+        value: 172.20.2.2
+      - name: share
+        value: Share
+      - name: file
+        value: scoring.txt
+      # SHA256 hash of file
+      - name: hash
+        value: 42e10254ea58d37447fe1f783b9a1018c80c4ebb28d80cd595d1faebfb680fdc
   - name: SSH - SHARKIESHA
     check_name: SSHCheck
     host: 172.20.2.3
@@ -412,28 +686,6 @@ teams:
         value: 172.20.2.3
       - name: uri
         value: "/"
-  - name: ICMP - GRANDMASHARK
-    check_name: ICMPCheck
-    host: 172.20.2.4
-    port: 0
-    points: 25
-    environments:
-    - matching_content: 1 packets transmitted, 1 received
-  - name: FTP - GRANDMASHARK
-    check_name: FTPCheck
-    host: 172.20.2.4
-    port: 21
-    points: 150
-    accounts:
-    - username: succ
-      password: changeme
-    environments:
-    - matching_content: "^SUCCESS"
-      properties:
-      - name: remotefilepath
-        value: "/ftp_files/testfile.txt"
-      - name: filecontents
-        value: Sample file contents
   - name: SSH - GRAMPASHARK
     check_name: SSHCheck
     host: 172.20.2.5
