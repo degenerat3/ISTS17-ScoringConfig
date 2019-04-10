@@ -30,3 +30,21 @@
         value: team$TEAM.local
       - name: base_dn
         value: dc=team$TEAM,dc=local
+  - name: DNS - DADDYSHARK
+    check_name: DNSCheck
+    host: 172.20.$TEAM.13
+    port: 53
+    points: 100
+    environments:
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: sharknado.team$TEAM.local
+    - matching_content: 'status: NOERROR'
+      properties:
+      - name: qtype
+        value: A
+      - name: domain
+        value: bruce.team$TEAM.local
