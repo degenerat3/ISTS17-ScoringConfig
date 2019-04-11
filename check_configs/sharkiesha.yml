@@ -13,10 +13,6 @@
       properties:
       - name: commands
         value: id;ls -l /home
-    - matching_content: PID
-      properties:
-      - name: commands
-        value: ps
   - name: HTTP - SHARKIESHA
     check_name: HTTPCheck
     host: 172.20.$TEAM.3

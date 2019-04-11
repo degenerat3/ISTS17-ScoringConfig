@@ -21,6 +21,3 @@
       - name: commands
         value: "id;ls -l /home"
     - matching_content: PID
-      properties:
-      - name: commands
-        value: ps

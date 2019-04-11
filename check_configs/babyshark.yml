@@ -13,10 +13,6 @@
       properties:
       - name: commands
         value: "id;ls -l /home"
-    - matching_content: PID
-      properties:
-      - name: commands
-        value: ps
   - name: MySQL - BABYSHARK
     check_name: MYSQLCheck
     host: 172.20.$TEAM.1
