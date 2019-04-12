@@ -5,18 +5,6 @@
     points: 25
     environments:
     - matching_content: 1 packets transmitted, 1 received
-  - name: RDP - BRUCE
-    check_name: RDPCheck
-    host: 172.20.$TEAM.15
-    port: 3389
-    points: 100
-    accounts:
-    - username: Dyson
-      password: QAZwsx123
-    - username: Hoover
-      password: QAZwsx123
-    environments:
-    - matching_content: SUCCESS$
   - name: SMB - BRUCE
     check_name: SMBCheck
     host: 172.20.$TEAM.15
